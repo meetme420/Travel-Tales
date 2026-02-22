@@ -4,6 +4,8 @@ require_once "config/database.php";
 
 $username = $password = $confirm_password = $email = "";
 $username_err = $password_err = $confirm_password_err = $email_err = "";
+$general_err = ""; // New variable for general errors
+$registration_successful = false; // Flag to indicate successful registration
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate username
@@ -23,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $username = trim($_POST["username"]);
                 }
             } else {
-                echo "Oops! Something went wrong. Please try again later.";
+                $general_err = "Oops! Something went wrong. Please try again later.";
             }
         }
         unset($stmt);
@@ -58,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     
     // Check input errors before inserting in database
-    if (empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($email_err)) {
+    if (empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($email_err) && empty($general_err)) {
         $sql = "INSERT INTO users (username, password, email) VALUES (:username, :password, :email)";
          
         if ($stmt = $pdo->prepare($sql)) {
@@ -71,26 +73,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $param_email = $email;
             
             if ($stmt->execute()) {
-                // Redirect to login page
-                header("location: login.html");
-                exit();
+                $registration_successful = true;
             } else {
-                echo "Something went wrong. Please try again later.";
+                $general_err = "Something went wrong. Please try again later.";
             }
         }
         unset($stmt);
     }
 }
 
-// Return errors as JSON if it's an AJAX request
-if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-    $errors = array(
+// Prepare the JSON response
+$response = array();
+if ($registration_successful) {
+    $response['success'] = true;
+    $response['message'] = "Registration successful!";
+} else {
+    $response['success'] = false;
+    $response['errors'] = array(
         'username_err' => $username_err,
         'email_err' => $email_err,
         'password_err' => $password_err,
-        'confirm_password_err' => $confirm_password_err
+        'confirm_password_err' => $confirm_password_err,
+        'general_err' => $general_err
     );
-    echo json_encode($errors);
-    exit();
 }
+
+header('Content-Type: application/json');
+echo json_encode($response);
+exit();
 ?>

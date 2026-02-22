@@ -32,8 +32,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Calculate total price
         $total_price = $destination["price"] * $data["number_of_people"];
         
-        // Create booking
-        $stmt = $pdo->prepare("INSERT INTO bookings (user_id, destination_id, booking_date, number_of_people, total_price) VALUES (?, ?, ?, ?, ?)");
+        // Create booking (payment_status defaults to 'unpaid' until M-Pesa confirms)
+        $stmt = $pdo->prepare("INSERT INTO bookings (user_id, destination_id, booking_date, number_of_people, total_price, payment_status) VALUES (?, ?, ?, ?, ?, 'unpaid')");
         $stmt->execute([
             $_SESSION["id"],
             $data["destination_id"],
@@ -54,9 +54,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $booking = $stmt->fetch(PDO::FETCH_ASSOC);
         
         echo json_encode([
-            "success" => true,
-            "message" => "Booking created successfully",
-            "booking" => $booking
+            "success"    => true,
+            "message"    => "Booking created successfully",
+            "booking_id" => (int) $booking_id,
+            "booking"    => $booking
         ]);
         
     } catch (PDOException $e) {

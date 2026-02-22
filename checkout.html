@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -76,7 +77,7 @@
 
         .btn-back:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .btn-back i {
@@ -87,7 +88,7 @@
             background: white;
             border-radius: 20px;
             padding: 2rem;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
         .section-title {
@@ -127,7 +128,7 @@
             background: white;
             border-radius: 20px;
             padding: 2rem;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
             height: fit-content;
         }
 
@@ -172,7 +173,7 @@
 
         .pay-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .payment-methods {
@@ -183,12 +184,13 @@
         }
 
         .payment-method {
-            border: 1px solid #e2e8f0;
+            border: 2px solid #e2e8f0;
             border-radius: 8px;
             padding: 1rem;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
+            position: relative;
         }
 
         .payment-method:hover {
@@ -196,10 +198,166 @@
             background: #f8f9fa;
         }
 
+        .payment-method.active {
+            border-color: #43a047;
+            background: #f1f8f1;
+        }
+
         .payment-method img {
             width: 40px;
             height: 40px;
             object-fit: contain;
+        }
+
+        .payment-method .mpesa-icon {
+            font-size: 1.8rem;
+        }
+
+        .payment-method small {
+            display: block;
+            margin-top: 0.3rem;
+            font-size: 0.75rem;
+            color: #4a5568;
+        }
+
+        /* M-Pesa phone field */
+        #mpesa-phone-group {
+            display: none;
+            margin-top: 1rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        #mpesa-phone-group label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+            color: #4a5568;
+            font-size: 0.95rem;
+        }
+
+        #mpesa-phone-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #43a047;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        #mpesa-phone-group input:focus {
+            box-shadow: 0 0 0 3px rgba(67, 160, 71, 0.15);
+        }
+
+        #mpesa-phone-group .hint {
+            font-size: 0.78rem;
+            color: #718096;
+            margin-top: 0.3rem;
+        }
+
+        /* M-Pesa waiting overlay */
+        #mpesa-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: 999;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(3px);
+        }
+
+        #mpesa-overlay.visible {
+            display: flex;
+        }
+
+        .mpesa-modal {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            max-width: 360px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .mpesa-modal .brand {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .mpesa-modal h3 {
+            color: #2d3748;
+            margin-bottom: 0.75rem;
+        }
+
+        .mpesa-modal p {
+            color: #718096;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .mpesa-modal .amount-badge {
+            background: #e8f5e9;
+            color: #2e7d32;
+            font-weight: 700;
+            font-size: 1.25rem;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Spinner */
+        .spinner {
+            width: 48px;
+            height: 48px;
+            border: 5px solid #e8f5e9;
+            border-top: 5px solid #43a047;
+            border-radius: 50%;
+            animation: spin 0.9s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-6px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .mpesa-modal .cancel-btn {
+            background: none;
+            border: 1px solid #e2e8f0;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            color: #718096;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .mpesa-modal .cancel-btn:hover {
+            border-color: #e53e3e;
+            color: #e53e3e;
+        }
+
+        #mpesa-status-msg {
+            font-size: 0.85rem;
+            color: #718096;
+            margin-top: 0.5rem;
         }
 
         @media (max-width: 768px) {
@@ -218,6 +376,7 @@
         }
     </style>
 </head>
+
 <body>
     <header>
         <h1>Checkout</h1>
@@ -238,7 +397,7 @@
         <div class="back-button">
             <a href="booking.html" class="btn-back"><i class="fas fa-arrow-left"></i> Back to Booking</a>
         </div>
-        
+
         <div class="checkout-section">
             <h2 class="section-title">Passenger Information</h2>
             <form id="checkout-form">
@@ -294,80 +453,287 @@
             <div class="flight-summary">
                 <div class="summary-item">
                     <span>Flight</span>
-                    <span>Nairobi → Paris</span>
+                    <span id="summary-flight">Nairobi → —</span>
                 </div>
                 <div class="summary-item">
                     <span>Date</span>
-                    <span id="flight-date">July 15, 2023</span>
+                    <span id="summary-date">—</span>
                 </div>
                 <div class="summary-item">
                     <span>Passengers</span>
-                    <span id="passenger-count">1</span>
+                    <span id="summary-passengers">1</span>
                 </div>
                 <div class="summary-item">
                     <span>Airline</span>
-                    <span>Kenya Airways</span>
+                    <span id="summary-airline">—</span>
                 </div>
                 <div class="summary-item">
                     <span>Duration</span>
-                    <span>18h 15m</span>
+                    <span id="summary-duration">—</span>
                 </div>
             </div>
             <div class="summary-item">
                 <span>Base Fare</span>
-                <span>$1,626.00</span>
+                <span id="summary-base">$0.00</span>
             </div>
             <div class="summary-item">
-                <span>Taxes & Fees</span>
-                <span>$162.60</span>
+                <span>Taxes &amp; Fees (10%)</span>
+                <span id="summary-taxes">$0.00</span>
             </div>
             <div class="summary-total">
                 <span>Total</span>
-                <span>$1,788.60</span>
+                <span id="summary-total">$0.00</span>
             </div>
 
             <h3 style="margin: 2rem 0 1rem;">Payment Method</h3>
             <div class="payment-methods">
-                <div class="payment-method">
+                <div class="payment-method" data-method="visa">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa">
+                    <small>Visa</small>
                 </div>
-                <div class="payment-method">
+                <div class="payment-method" data-method="mastercard">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard">
+                    <small>Mastercard</small>
                 </div>
-                <div class="payment-method">
+                <div class="payment-method" data-method="paypal">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal">
+                    <small>PayPal</small>
+                </div>
+                <div class="payment-method active" data-method="mpesa" id="mpesa-option">
+                    <div class="mpesa-icon">📱</div>
+                    <small style="color:#43a047;font-weight:600;">M-Pesa</small>
                 </div>
             </div>
 
-            <button type="submit" class="pay-btn">Pay Now $1,788.60</button>
+            <!-- M-Pesa phone number input -->
+            <div id="mpesa-phone-group">
+                <label for="mpesa-phone">M-Pesa Phone Number</label>
+                <input type="tel" id="mpesa-phone" placeholder="e.g. 0712345678 or 254712345678" autocomplete="tel"
+                    inputmode="tel">
+                <p class="hint">You will receive an STK Push prompt on this number.</p>
+            </div>
+
+            <button type="button" id="pay-btn" class="pay-btn">Pay Now</button>
+        </div>
+    </div>
+
+    <!-- M-Pesa waiting overlay -->
+    <div id="mpesa-overlay">
+        <div class="mpesa-modal">
+            <div class="brand">📱</div>
+            <h3>Check Your Phone</h3>
+            <div class="amount-badge" id="overlay-amount">KES —</div>
+            <p>An M-Pesa payment request has been sent to <strong id="overlay-phone"></strong>.<br>
+                Enter your M-Pesa PIN to complete the payment.</p>
+            <div class="spinner"></div>
+            <div id="mpesa-status-msg">Waiting for payment confirmation…</div>
+            <br>
+            <button class="cancel-btn" id="cancel-mpesa-btn">Cancel</button>
         </div>
     </div>
 
     <script>
-        // Add form validation
-        document.getElementById('checkout-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // In a real application, this would process the payment
-            alert('Payment processed successfully!');
-            window.location.href = 'booking-confirmation.html';
-        });
+        // ── Populate Order Summary from URL params ─────────────────────
+        (function () {
+            const p = new URLSearchParams(window.location.search);
+            const dest = p.get('destination') || 'your destination';
+            const airline = p.get('airline') || '—';
+            const rawPrice = parseFloat(p.get('price') || '0');
+            const duration = p.get('duration') || '—';
+            const date = p.get('date') || '';
+            const passengers = parseInt(p.get('passengers') || '1', 10);
 
-        // Add payment method selection
+            const perPax = rawPrice * passengers;
+            const taxes = +(perPax * 0.10).toFixed(2);
+            const total = +(perPax + taxes).toFixed(2);
+
+            const fmt = v => '$' + v.toLocaleString('en-US', { minimumFractionDigits: 2 });
+            const fmtDate = d => d ? new Date(d + 'T00:00:00').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '—';
+
+            document.getElementById('summary-flight').textContent = `Nairobi → ${dest}`;
+            document.getElementById('summary-airline').textContent = airline;
+            document.getElementById('summary-duration').textContent = duration;
+            document.getElementById('summary-date').textContent = fmtDate(date);
+            document.getElementById('summary-passengers').textContent = passengers;
+            document.getElementById('summary-base').textContent = fmt(perPax);
+            document.getElementById('summary-taxes').textContent = fmt(taxes);
+            document.getElementById('summary-total').textContent = fmt(total);
+
+            // Store for use in the pay button
+            window._checkoutTotal = total;
+            window._checkoutDest = dest;
+            window._checkoutDate = date;
+            window._checkoutPax = passengers;
+        })();
+
+        // ── Payment method selection ──────────────────────────────────
+        let selectedMethod = 'mpesa';
+        const phoneGroup = document.getElementById('mpesa-phone-group');
+
+        // Show M-Pesa phone field by default since it's pre-selected
+        phoneGroup.style.display = 'block';
+
         document.querySelectorAll('.payment-method').forEach(method => {
-            method.addEventListener('click', function() {
-                document.querySelectorAll('.payment-method').forEach(m => {
-                    m.style.borderColor = '#e2e8f0';
-                    m.style.background = 'white';
-                });
-                this.style.borderColor = '#667eea';
-                this.style.background = '#f8f9fa';
+            method.addEventListener('click', function () {
+                document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('active'));
+                this.classList.add('active');
+                selectedMethod = this.dataset.method;
+                phoneGroup.style.display = selectedMethod === 'mpesa' ? 'block' : 'none';
+                updatePayButton();
             });
         });
 
-        // Set minimum date for passport expiry
+        // ── Passport expiry minimum date ──────────────────────────────
         const expiryInput = document.getElementById('expiry');
         const today = new Date().toISOString().split('T')[0];
         expiryInput.setAttribute('min', today);
+
+        // ── Dynamic pay button label ──────────────────────────────────
+        function updatePayButton() {
+            const btn = document.getElementById('pay-btn');
+            btn.textContent = selectedMethod === 'mpesa' ? 'Pay with M-Pesa 📱' : 'Pay Now';
+        }
+        updatePayButton();
+
+        // ── Polling state ──────────────────────────────────────────────
+        let pollTimer = null;
+        let pollAttempts = 0;
+        const MAX_POLLS = 20;   // 20 × 3s = 60 seconds
+        const POLL_INTERVAL = 3000;
+
+        // ── Main pay button click ─────────────────────────────────────
+        document.getElementById('pay-btn').addEventListener('click', async function () {
+            // Basic form validation
+            const form = document.getElementById('checkout-form');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            if (selectedMethod !== 'mpesa') {
+                alert('Only M-Pesa is implemented for online payment. Please select M-Pesa.');
+                return;
+            }
+
+            const phoneRaw = document.getElementById('mpesa-phone').value.trim();
+            if (!phoneRaw) {
+                alert('Please enter your M-Pesa phone number.');
+                document.getElementById('mpesa-phone').focus();
+                return;
+            }
+
+            // ── Step 1: Create booking ─────────────────────────────────
+            // Read booking data — booking.html now passes these params
+            const params = new URLSearchParams(window.location.search);
+            const destinationId = params.get('destination_id') || 1;
+            const bookingDate = window._checkoutDate || params.get('date') || new Date().toISOString().split('T')[0];
+            const numPeople = window._checkoutPax || parseInt(params.get('passengers') || '1', 10);
+            const totalPrice = window._checkoutTotal || 0;
+
+            let bookingId;
+            try {
+                const bookingRes = await fetch('api/create_booking.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        destination_id: parseInt(destinationId),
+                        booking_date: bookingDate,
+                        number_of_people: parseInt(numPeople)
+                    })
+                });
+                const bookingData = await bookingRes.json();
+                if (!bookingData.success) {
+                    alert('Booking error: ' + (bookingData.error || 'Unknown error'));
+                    return;
+                }
+                bookingId = bookingData.booking_id;
+            } catch (err) {
+                alert('Network error while creating booking. Please try again.');
+                return;
+            }
+
+            // ── Step 2: Initiate STK Push ──────────────────────────────
+            let checkoutRequestId, amountKes;
+            try {
+                const stkRes = await fetch('api/mpesa_stk_push.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ booking_id: bookingId, phone_number: phoneRaw })
+                });
+                const stkData = await stkRes.json();
+                if (!stkData.success) {
+                    alert('M-Pesa error: ' + (stkData.error || 'Could not send STK Push'));
+                    return;
+                }
+                checkoutRequestId = stkData.checkout_request_id;
+                amountKes = stkData.amount_kes;
+            } catch (err) {
+                alert('Network error while initiating M-Pesa payment. Please try again.');
+                return;
+            }
+
+            // ── Step 3: Show overlay & start polling ──────────────────
+            showOverlay(phoneRaw, amountKes);
+            pollAttempts = 0;
+            pollTimer = setInterval(() => pollStatus(checkoutRequestId), POLL_INTERVAL);
+        });
+
+        // ── Polling function ──────────────────────────────────────────
+        async function pollStatus(checkoutRequestId) {
+            pollAttempts++;
+            if (pollAttempts > MAX_POLLS) {
+                stopPolling();
+                hideOverlay();
+                alert('Payment timed out. If you completed the payment, it will be confirmed shortly. Please check your booking status.');
+                return;
+            }
+
+            document.getElementById('mpesa-status-msg').textContent =
+                `Checking status… (${pollAttempts}/${MAX_POLLS})`;
+
+            try {
+                const res = await fetch('api/mpesa_query.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ checkout_request_id: checkoutRequestId })
+                });
+                const data = await res.json();
+
+                if (data.status === 'completed') {
+                    stopPolling();
+                    hideOverlay();
+                    alert('✅ Payment successful! Your booking is confirmed.\nM-Pesa Receipt: ' + (data.mpesa_receipt_number || 'N/A'));
+                    window.location.href = 'booking.html';
+                } else if (data.status === 'failed') {
+                    stopPolling();
+                    hideOverlay();
+                    alert('❌ Payment failed: ' + (data.result_desc || 'Please try again.'));
+                }
+                // else still 'pending' — keep polling
+            } catch (e) {
+                // Network hiccup — will retry next interval
+            }
+        }
+
+        function stopPolling() {
+            if (pollTimer) { clearInterval(pollTimer); pollTimer = null; }
+        }
+
+        function showOverlay(phone, amountKes) {
+            document.getElementById('overlay-phone').textContent = phone;
+            document.getElementById('overlay-amount').textContent = 'KES ' + (amountKes ? amountKes.toLocaleString() : '—');
+            document.getElementById('mpesa-overlay').classList.add('visible');
+        }
+
+        function hideOverlay() {
+            document.getElementById('mpesa-overlay').classList.remove('visible');
+        }
+
+        document.getElementById('cancel-mpesa-btn').addEventListener('click', function () {
+            stopPolling();
+            hideOverlay();
+        });
     </script>
 </body>
-</html> 
+
+</html>

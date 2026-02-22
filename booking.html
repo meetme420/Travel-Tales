@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -73,7 +74,7 @@
             background: white;
             border-radius: 20px;
             padding: 2rem;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
             margin-bottom: 2rem;
         }
 
@@ -123,7 +124,7 @@
 
         .book-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .search-form {
@@ -216,6 +217,7 @@
         }
     </style>
 </head>
+
 <body>
     <header>
         <h1>Book Your Trip</h1>
@@ -236,7 +238,7 @@
         <div class="back-button">
             <a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Back to Home</a>
         </div>
-        
+
         <div class="booking-section">
             <h2 class="section-title">Search Flights</h2>
             <form class="search-form">
@@ -318,61 +320,62 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr data-dest="Paris" data-airline="Kenya Airways" data-price="1626" data-duration="18h 15m">
                         <td>Paris</td>
                         <td>CDG</td>
                         <td>Kenya Airways</td>
                         <td>18h 15m</td>
-                        <td>1,626$</td>
-                        <td><a href="checkout.html" class="book-btn">Book Now</a></td>
+                        <td>$1,626</td>
+                        <td><button class="book-btn" onclick="bookFlight(this)">Book Now</button></td>
                     </tr>
-                    <tr>
+                    <tr data-dest="Tokyo" data-airline="Etihad Airways" data-price="1500" data-duration="16h 45m">
                         <td>Tokyo</td>
                         <td>HND</td>
                         <td>Etihad Airways</td>
                         <td>16h 45m (2 stop)</td>
-                        <td>1,500$</td>
-                        <td><a href="checkout.html" class="book-btn">Book Now</a></td>
+                        <td>$1,500</td>
+                        <td><button class="book-btn" onclick="bookFlight(this)">Book Now</button></td>
                     </tr>
-                    <tr>
+                    <tr data-dest="Saudi Arabia" data-airline="Ethiopia Airlines" data-price="700"
+                        data-duration="14h 10m">
                         <td>Saudi Arabia</td>
                         <td>JED</td>
                         <td>Ethiopia Airlines</td>
                         <td>14h 10m (1 stop)</td>
-                        <td>700$</td>
-                        <td><a href="checkout.html" class="book-btn">Book Now</a></td>
+                        <td>$700</td>
+                        <td><button class="book-btn" onclick="bookFlight(this)">Book Now</button></td>
                     </tr>
-                    <tr>
-                        <td>Newyork</td>
-                        <td>SXR</td>
+                    <tr data-dest="New York" data-airline="Etihad Airways" data-price="1500" data-duration="11h 30m">
+                        <td>New York</td>
+                        <td>JFK</td>
                         <td>Etihad Airways</td>
                         <td>11h 30m</td>
-                        <td>1,500$</td>
-                        <td><a href="checkout.html" class="book-btn">Book Now</a></td>
+                        <td>$1,500</td>
+                        <td><button class="book-btn" onclick="bookFlight(this)">Book Now</button></td>
                     </tr>
-                    <tr>
+                    <tr data-dest="India" data-airline="GoAir" data-price="2000" data-duration="15h 15m">
                         <td>India</td>
-                        <td>DHM</td>
+                        <td>DEL</td>
                         <td>GoAir</td>
                         <td>15h 15m</td>
-                        <td>2,000$</td>
-                        <td><a href="checkout.html" class="book-btn">Book Now</a></td>
+                        <td>$2,000</td>
+                        <td><button class="book-btn" onclick="bookFlight(this)">Book Now</button></td>
                     </tr>
-                    <tr>
-                        <td>Maldivs</td>
-                        <td>DED</td>
+                    <tr data-dest="Maldives" data-airline="Qatar Airlines" data-price="1900" data-duration="11h 25m">
+                        <td>Maldives</td>
+                        <td>MLE</td>
                         <td>Qatar Airlines</td>
                         <td>11h 25m</td>
-                        <td>1,900$</td>
-                        <td><a href="checkout.html" class="book-btn">Book Now</a></td>
+                        <td>$1,900</td>
+                        <td><button class="book-btn" onclick="bookFlight(this)">Book Now</button></td>
                     </tr>
-                    <tr>
+                    <tr data-dest="China" data-airline="AirAsia" data-price="1200" data-duration="12h 10m">
                         <td>China</td>
-                        <td>JAI</td>
+                        <td>PEK</td>
                         <td>AirAsia</td>
                         <td>12h 10m</td>
-                        <td>1,200$</td>
-                        <td><a href="checkout.html" class="book-btn">Book Now</a></td>
+                        <td>$1,200</td>
+                        <td><button class="book-btn" onclick="bookFlight(this)">Book Now</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -380,79 +383,102 @@
     </div>
 
     <script>
-        // Add form submission handling
-        document.querySelector('.search-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // In a real application, this would trigger an API call to search for flights
-            alert('Searching for flights...');
-        });
-
-        // Add date validation
+        // ── Date validation ──────────────────────────────────────────
         const dateInput = document.getElementById('date');
         const today = new Date().toISOString().split('T')[0];
         dateInput.setAttribute('min', today);
+        // Pre-fill with tomorrow's date as a sensible default
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        dateInput.value = tomorrow.toISOString().split('T')[0];
 
-        // Add sorting functionality
+        // ── Book Now — build URL params and go to checkout ───────────
+        function bookFlight(btn) {
+            const row = btn.closest('tr');
+            const date = dateInput.value;
+            const passengers = document.getElementById('passengers').value;
+
+            if (!date) {
+                alert('Please select a travel date first.');
+                dateInput.focus();
+                return;
+            }
+
+            const params = new URLSearchParams({
+                destination: row.dataset.dest,
+                airline: row.dataset.airline,
+                price: row.dataset.price,
+                duration: row.dataset.duration,
+                date: date,
+                passengers: passengers
+            });
+            window.location.href = 'checkout.html?' + params.toString();
+        }
+
+        // ── Search form ──────────────────────────────────────────────
+        document.querySelector('.search-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const arrival = document.getElementById('arrival').value.trim();
+            if (!arrival) { alert('Please enter a destination city.'); return; }
+            // Filter table rows by destination
+            const rows = document.querySelectorAll('.flight-table tbody tr');
+            rows.forEach(row => {
+                const dest = row.dataset.dest.toLowerCase();
+                row.style.display = dest.includes(arrival.toLowerCase()) ? '' : 'none';
+            });
+        });
+
+        // ── Sorting ──────────────────────────────────────────────────
         let priceSortAsc = true;
         let durationSortAsc = true;
 
-        document.getElementById('sort-price').addEventListener('click', function() {
+        document.getElementById('sort-price').addEventListener('click', function () {
             const tbody = document.querySelector('.flight-table tbody');
             const rows = Array.from(tbody.querySelectorAll('tr'));
-            
             rows.sort((a, b) => {
-                const priceA = parseFloat(a.cells[4].textContent.replace(/[^0-9.-]+/g, ''));
-                const priceB = parseFloat(b.cells[4].textContent.replace(/[^0-9.-]+/g, ''));
+                const priceA = parseFloat(a.dataset.price);
+                const priceB = parseFloat(b.dataset.price);
                 return priceSortAsc ? priceA - priceB : priceB - priceA;
             });
-            
             priceSortAsc = !priceSortAsc;
             this.querySelector('i').className = `fas fa-sort-${priceSortAsc ? 'up' : 'down'}`;
-            
             rows.forEach(row => tbody.appendChild(row));
         });
 
-        document.getElementById('sort-duration').addEventListener('click', function() {
+        document.getElementById('sort-duration').addEventListener('click', function () {
             const tbody = document.querySelector('.flight-table tbody');
             const rows = Array.from(tbody.querySelectorAll('tr'));
-            
             rows.sort((a, b) => {
-                const durationA = parseFloat(a.cells[3].textContent.match(/\d+/)[0]);
-                const durationB = parseFloat(b.cells[3].textContent.match(/\d+/)[0]);
-                return durationSortAsc ? durationA - durationB : durationB - durationA;
+                const dA = parseFloat(a.dataset.duration.match(/\d+/)[0]);
+                const dB = parseFloat(b.dataset.duration.match(/\d+/)[0]);
+                return durationSortAsc ? dA - dB : dB - dA;
             });
-            
             durationSortAsc = !durationSortAsc;
             this.querySelector('i').className = `fas fa-sort-${durationSortAsc ? 'up' : 'down'}`;
-            
             rows.forEach(row => tbody.appendChild(row));
         });
 
-        // Add filtering functionality
+        // ── Filters ──────────────────────────────────────────────────
         function applyFilters() {
             const airlineFilter = document.getElementById('airline-filter').value;
             const stopsFilter = document.getElementById('stops-filter').value;
             const priceFilter = document.getElementById('price-filter').value;
-            
-            const rows = document.querySelectorAll('.flight-table tbody tr');
-            
-            rows.forEach(row => {
-                const airline = row.cells[2].textContent;
+
+            document.querySelectorAll('.flight-table tbody tr').forEach(row => {
+                const airline = row.dataset.airline;
                 const duration = row.cells[3].textContent;
-                const price = parseFloat(row.cells[4].textContent.replace(/[^0-9.-]+/g, ''));
-                
+                const price = parseFloat(row.dataset.price);
+
                 const matchesAirline = airlineFilter === 'all' || airline === airlineFilter;
-                const matchesStops = stopsFilter === 'all' || 
+                const matchesStops = stopsFilter === 'all' ||
                     (stopsFilter === 'direct' && !duration.includes('stop')) ||
                     (stopsFilter === '1-stop' && duration.includes('1 stop')) ||
                     (stopsFilter === '2-stop' && duration.includes('2 stop'));
-                
                 let matchesPrice = true;
                 if (priceFilter !== 'all') {
                     const [min, max] = priceFilter.split('-').map(v => v === '+' ? Infinity : parseFloat(v));
                     matchesPrice = price >= min && (max === Infinity || price < max);
                 }
-                
                 row.style.display = matchesAirline && matchesStops && matchesPrice ? '' : 'none';
             });
         }
@@ -462,4 +488,5 @@
         document.getElementById('price-filter').addEventListener('change', applyFilters);
     </script>
 </body>
-</html> 
+
+</html>

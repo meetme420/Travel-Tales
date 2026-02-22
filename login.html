@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +11,7 @@
         * {
             margin: 0;
             padding: 0;
-            box-sizing: border-box; 
+            box-sizing: border-box;
         }
 
         body {
@@ -18,7 +19,7 @@
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             min-height: 100vh;
             display: flex;
-            flex-direction: column; 
+            flex-direction: column;
         }
 
         header {
@@ -52,7 +53,7 @@
         .hero-content h1 {
             font-size: 2.5rem;
             margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .hero-content p {
@@ -96,7 +97,7 @@
             background: white;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
             width: 100%;
             max-width: 1000px;
             min-height: 600px;
@@ -267,7 +268,7 @@
 
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .social-login {
@@ -320,7 +321,7 @@
 
         .social-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .facebook {
@@ -405,6 +406,7 @@
         }
     </style>
 </head>
+
 <body>
     <header>
         <div class="hero-content">
@@ -426,7 +428,8 @@
                 <div class="auth-image">
                     <div class="auth-image-content">
                         <h2>Join Our Travel Community</h2>
-                        <p>Create an account to save your favorite destinations, share your travel stories, and get personalized recommendations for your next adventure.</p>
+                        <p>Create an account to save your favorite destinations, share your travel stories, and get
+                            personalized recommendations for your next adventure.</p>
                     </div>
                 </div>
                 <div class="auth-form-container">
@@ -490,14 +493,16 @@
                         <div class="form-group">
                             <label for="signup-confirm-password">Confirm Password</label>
                             <div class="password-toggle">
-                                <input type="password" id="signup-confirm-password" placeholder="Confirm your password" required>
+                                <input type="password" id="signup-confirm-password" placeholder="Confirm your password"
+                                    required>
                                 <i class="fas fa-eye" id="toggle-confirm-password"></i>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="remember-me">
                                 <input type="checkbox" id="terms" required>
-                                <label for="terms">I agree to the <a href="terms-of-use.html">Terms of Service</a> and <a href="privacy-policy.html">Privacy Policy</a></label>
+                                <label for="terms">I agree to the <a href="terms-of-use.html">Terms of Service</a> and
+                                    <a href="privacy-policy.html">Privacy Policy</a></label>
                             </div>
                         </div>
                         <button type="submit" class="btn">Create Account</button>
@@ -521,7 +526,8 @@
                             <input type="email" id="forgot-email" placeholder="Enter your email" required>
                         </div>
                         <p style="margin-bottom: 1.5rem; color: #718096; font-size: 0.9rem;">
-                            Enter the email address associated with your account and we'll send you a link to reset your password.
+                            Enter the email address associated with your account and we'll send you a link to reset your
+                            password.
                         </p>
                         <button type="submit" class="btn">Reset Password</button>
                         <div class="signup-link">
@@ -619,47 +625,119 @@
             togglePasswordVisibility(confirmPassword, toggleConfirmPassword);
         });
 
-        // Form submission handling
+        // ── Inline error helper ───────────────────────────────────────
+        function showError(inputId, message) {
+            const input = document.getElementById(inputId);
+            let err = input.parentElement.querySelector('.field-error');
+            if (!err) {
+                err = document.createElement('p');
+                err.className = 'field-error';
+                err.style.cssText = 'color:#e53e3e;font-size:0.82rem;margin-top:0.3rem;';
+                input.parentElement.appendChild(err);
+            }
+            err.textContent = message;
+            input.style.borderColor = '#e53e3e';
+        }
+
+        function clearErrors(formEl) {
+            formEl.querySelectorAll('.field-error').forEach(e => e.remove());
+            formEl.querySelectorAll('input').forEach(i => i.style.borderColor = '');
+        }
+
+        function showFormMessage(formEl, message, isError = false) {
+            let banner = formEl.querySelector('.form-banner');
+            if (!banner) {
+                banner = document.createElement('div');
+                banner.className = 'form-banner';
+                banner.style.cssText = 'padding:0.75rem 1rem;border-radius:8px;margin-bottom:1rem;font-size:0.9rem;font-weight:500;';
+                formEl.prepend(banner);
+            }
+            banner.textContent = message;
+            banner.style.background = isError ? '#fff5f5' : '#f0fff4';
+            banner.style.color = isError ? '#c53030' : '#276749';
+            banner.style.border = isError ? '1px solid #fed7d7' : '1px solid #c6f6d5';
+        }
+
+        // ── Login form ────────────────────────────────────────────────
         const loginForm = document.getElementById('login-form');
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            clearErrors(loginForm);
+            const btn = loginForm.querySelector('button[type="submit"]');
+            btn.textContent = 'Logging in…';
+            btn.disabled = true;
+
+            const body = new URLSearchParams({
+                username: document.getElementById('login-email').value.trim(),
+                password: document.getElementById('login-password').value
+            });
+
+            try {
+                const res = await fetch('authenticate.php', { method: 'POST', body });
+                const data = await res.json();
+                if (data.success) {
+                    // Store username in localStorage so other pages can show it
+                    localStorage.setItem('tt_username', data.username);
+                    window.location.href = 'index.html';
+                } else {
+                    showFormMessage(loginForm, data.login_err || data.password_err || 'Login failed.', true);
+                }
+            } catch {
+                showFormMessage(loginForm, 'Network error. Please try again.', true);
+            } finally {
+                btn.textContent = 'Login';
+                btn.disabled = false;
+            }
+        });
+
+        // ── Signup form ───────────────────────────────────────────────
         const signupForm = document.getElementById('signup-form');
-        const forgotForm = document.getElementById('forgot-form');
-
-        loginForm.addEventListener('submit', (e) => {
+        signupForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            // Here you would typically send the login data to your server
-            console.log('Login submitted:', {
-                email: loginPassword.value,
-                password: loginPassword.value
-            });
-            // For demo purposes, redirect to home page
-            window.location.href = 'index.html';
-        });
+            clearErrors(signupForm);
+            const btn = signupForm.querySelector('button[type="submit"]');
+            btn.textContent = 'Creating account…';
+            btn.disabled = true;
 
-        signupForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            // Here you would typically send the signup data to your server
-            console.log('Signup submitted:', {
-                name: document.getElementById('signup-name').value,
-                email: document.getElementById('signup-email').value,
+            const body = new URLSearchParams({
+                username: document.getElementById('signup-name').value.trim(),
+                email: document.getElementById('signup-email').value.trim(),
                 password: signupPassword.value,
-                confirmPassword: confirmPassword.value
+                confirm_password: confirmPassword.value
             });
-            // For demo purposes, redirect to home page
-            window.location.href = 'index.html';
+
+            try {
+                const res = await fetch('register.php', { method: 'POST', body });
+                const data = await res.json();
+                if (data.success) {
+                    showFormMessage(signupForm, '✅ Account created! Please log in.', false);
+                    signupForm.reset();
+                    setTimeout(() => switchTab('login'), 1500);
+                } else {
+                    const errs = data.errors || {};
+                    if (errs.username_err) showError('signup-name', errs.username_err);
+                    if (errs.email_err) showError('signup-email', errs.email_err);
+                    if (errs.password_err) showError('signup-password', errs.password_err);
+                    if (errs.confirm_password_err) showError('signup-confirm-password', errs.confirm_password_err);
+                    if (errs.general_err) showFormMessage(signupForm, errs.general_err, true);
+                }
+            } catch {
+                showFormMessage(signupForm, 'Network error. Please try again.', true);
+            } finally {
+                btn.textContent = 'Create Account';
+                btn.disabled = false;
+            }
         });
 
+        // ── Forgot password form ──────────────────────────────────────
+        const forgotForm = document.getElementById('forgot-form');
         forgotForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            // Here you would typically send the forgot password request to your server
-            console.log('Forgot password submitted:', {
-                email: document.getElementById('forgot-email').value
-            });
-            // Show success message
-            alert('Password reset link has been sent to your email.');
-            // Switch back to login tab
-            switchTab('login');
+            showFormMessage(forgotForm, '📧 If this email is registered, a reset link will be sent. Check your inbox.', false);
+            setTimeout(() => switchTab('login'), 3000);
         });
     </script>
     <script src="js/chatbot-widget.js"></script>
 </body>
-</html> 
+
+</html>

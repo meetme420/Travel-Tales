@@ -1,0 +1,37 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Start PHP Server",
+            "type": "shell",
+            "command": "php",
+            "args": [
+                "-S",
+                "localhost:80",
+                "-t",
+                "${workspaceFolder}"
+            ],
+            "isBackground": true,
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
+        },
+        {
+            "label": "Start Ngrok",
+            "type": "shell",
+            "command": "ngrok",
+            "args": [
+                "http",
+                "80"
+            ],
+            "isBackground": true,
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
+        }
+    ]
+}

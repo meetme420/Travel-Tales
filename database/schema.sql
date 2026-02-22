@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS bookings (
     number_of_people INT NOT NULL,
     total_price DECIMAL(10,2),
     status ENUM('pending', 'confirmed', 'cancelled') DEFAULT 'pending',
+    payment_status ENUM('unpaid', 'paid', 'failed') DEFAULT 'unpaid',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (destination_id) REFERENCES destinations(id)
@@ -48,6 +49,24 @@ CREATE TABLE IF NOT EXISTS reviews (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (destination_id) REFERENCES destinations(id)
+);
+
+-- M-Pesa transactions table
+CREATE TABLE IF NOT EXISTS mpesa_transactions (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    booking_id INT NOT NULL,
+    phone_number VARCHAR(20) NOT NULL,
+    amount DECIMAL(10,2) NOT NULL,
+    merchant_request_id VARCHAR(100),
+    checkout_request_id VARCHAR(100) UNIQUE NOT NULL,
+    result_code INT,
+    result_desc VARCHAR(255),
+    mpesa_receipt_number VARCHAR(50),
+    transaction_date DATETIME,
+    status ENUM('pending', 'completed', 'failed') DEFAULT 'pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (booking_id) REFERENCES bookings(id)
 );
 
 -- Travel guides table

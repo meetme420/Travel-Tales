@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile — Travel Tales</title>
+    <meta name="description" content="Manage your Travel Tales profile, update email and password.">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        /* ── Header ── */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .header-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .brand {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .brand span {
+            color: #f6ad55;
+        }
+
+        nav {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: #f6ad55;
+        }
+
+        nav a.active {
+            color: white;
+            font-weight: 700;
+        }
+
+        /* ── Profile hero ── */
+        .profile-hero {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 3rem 2rem 5rem;
+            text-align: center;
+            color: white;
+        }
+
+        .avatar-circle {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            border: 4px solid rgba(255, 255, 255, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.6rem;
+            font-weight: 700;
+            margin: 0 auto 1rem;
+            backdrop-filter: blur(8px);
+        }
+
+        .profile-hero h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .profile-hero p {
+            opacity: 0.78;
+            font-size: 0.9rem;
+        }
+
+        /* ── Main grid ── */
+        .container {
+            max-width: 960px;
+            margin: -2.5rem auto 3rem;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        /* ── Cards ── */
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.8rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .card h2 {
+            font-size: 1.05rem;
+            color: #1f2937;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .card h2 i {
+            color: #7c3aed;
+            font-size: 0.95rem;
+        }
+
+        /* Sidebar stats */
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .stat-row:last-child {
+            border-bottom: none;
+        }
+
+        .stat-row .label {
+            font-size: 0.82rem;
+            color: #6b7280;
+        }
+
+        .stat-row .value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .member-badge {
+            margin-top: 1.2rem;
+            padding: 0.75rem 1rem;
+            background: linear-gradient(135deg, #ede9fe, #ddd6fe);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-size: 0.82rem;
+            color: #5b21b6;
+            font-weight: 600;
+        }
+
+        /* ── Form styles ── */
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #4b5563;
+            margin-bottom: 0.4rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: border-color 0.2s;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+        }
+
+        .btn-save {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.8rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-save:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 16px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-save:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .msg {
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .msg-success {
+            background: #f0fff4;
+            color: #276749;
+            border: 1px solid #c6f6d5;
+        }
+
+        .msg-error {
+            background: #fff5f5;
+            color: #c53030;
+            border: 1px solid #fed7d7;
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid #f3f4f6;
+            margin: 1.5rem 0;
+        }
+
+        /* ── Recent bookings list ── */
+        .booking-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.9rem 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .booking-item:last-child {
+            border-bottom: none;
+        }
+
+        .booking-icon-sm {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: grid;
+            place-items: center;
+            color: white;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .booking-item .b-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .booking-item .b-meta {
+            font-size: 0.75rem;
+            color: #9ca3af;
+        }
+
+        .booking-item .b-price {
+            margin-left: auto;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        /* ── Login prompt ── */
+        .login-prompt {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 3rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .login-prompt .icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            margin-top: 1.2rem;
+            padding: 0.75rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(102, 126, 234, 0.45);
+        }
+
+        @media (max-width: 720px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-inner">
+            <div class="brand">Travel<span>Tales</span></div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="booking.html">Book</a>
+                <a href="dashboard.html">My Bookings</a>
+                <a href="profile.html" class="active">Profile</a>
+                <a href="login.html" id="nav-auth">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="profile-hero">
+        <div class="avatar-circle" id="avatar-circle">?</div>
+        <h1 id="profile-name">Loading…</h1>
+        <p id="profile-email">—</p>
+    </div>
+
+    <div class="container" id="main-container">
+        <!-- Populated by JS -->
+    </div>
+
+    <script>
+        function fmtDate(str) {
+            return str ? new Date(str).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '—';
+        }
+        function fmtPrice(v) {
+            return '$' + parseFloat(v || 0).toLocaleString('en-US', { minimumFractionDigits: 2 });
+        }
+        const DEST_EMOJIS = {
+            paris: '🗼', tokyo: '🗾', maldives: '🏝️', 'new york': '🗽',
+            'saudi arabia': '🕌', india: '🇮🇳', china: '🇨🇳',
+            venice: '🚤', santorini: '⛵', 'cape town': '🌍'
+        };
+        function destEmoji(name) {
+            for (const [k, v] of Object.entries(DEST_EMOJIS))
+                if ((name || '').toLowerCase().includes(k)) return v;
+            return '✈️';
+        }
+
+        // ── Main load ──────────────────────────────────────────────────
+        async function loadProfile() {
+            const container = document.getElementById('main-container');
+
+            try {
+                const res = await fetch('api/profile.php');
+                const data = await res.json();
+
+                if (data.error) {
+                    container.innerHTML = `
+                        <div class="login-prompt">
+                            <div class="icon">🔐</div>
+                            <h3>Sign in to view your profile</h3>
+                            <p>You need to be logged in to access this page.</p>
+                            <a href="login.html" class="btn-primary">Login / Sign Up</a>
+                        </div>`;
+                    return;
+                }
+
+                const { profile, recent_bookings, recent_reviews } = data;
+
+                // Hero
+                document.getElementById('avatar-circle').textContent = (profile.username || '?')[0].toUpperCase();
+                document.getElementById('profile-name').textContent = profile.username;
+                document.getElementById('profile-email').textContent = profile.email || '—';
+
+                // Nav auth
+                const navAuth = document.getElementById('nav-auth');
+                navAuth.textContent = 'Logout';
+                navAuth.href = '#';
+                navAuth.addEventListener('click', async e => {
+                    e.preventDefault();
+                    await fetch('api/logout.php');
+                    localStorage.removeItem('tt_username');
+                    window.location.href = 'login.html';
+                });
+
+                // Recent bookings HTML
+                const booksHTML = recent_bookings.length === 0
+                    ? '<p style="color:#9ca3af;font-size:0.85rem;">No bookings yet.</p>'
+                    : recent_bookings.map(b => `
+                        <div class="booking-item">
+                            <div class="booking-icon-sm">${destEmoji(b.destination_name)}</div>
+                            <div>
+                                <div class="b-name">${b.destination_name}</div>
+                                <div class="b-meta">${fmtDate(b.booking_date)} · ${b.number_of_people} pax</div>
+                            </div>
+                            <div class="b-price">${fmtPrice(b.total_price)}</div>
+                        </div>`).join('');
+
+                // Recent reviews HTML
+                const revsHTML = recent_reviews.length === 0
+                    ? '<p style="color:#9ca3af;font-size:0.85rem;">No reviews yet.</p>'
+                    : recent_reviews.map(r => `
+                        <div class="booking-item">
+                            <div class="booking-icon-sm">⭐</div>
+                            <div>
+                                <div class="b-name">${r.destination_name}</div>
+                                <div class="b-meta">${'★'.repeat(r.rating || 5)} · ${fmtDate(r.created_at)}</div>
+                            </div>
+                        </div>`).join('');
+
+                container.innerHTML = `
+                    <!-- Sidebar -->
+                    <aside>
+                        <div class="card">
+                            <h2><i class="fas fa-chart-bar"></i> Stats</h2>
+                            <div class="stat-row"><span class="label">Total Bookings</span><span class="value">${profile.total_bookings || 0}</span></div>
+                            <div class="stat-row"><span class="label">Reviews Left</span><span class="value">${profile.total_reviews || 0}</span></div>
+                            <div class="member-badge"><i class="fas fa-award"></i> Member since ${fmtDate(profile.created_at)}</div>
+                        </div>
+
+                        <div class="card" style="margin-top:1.5rem;">
+                            <h2><i class="fas fa-history"></i> Recent Bookings</h2>
+                            ${booksHTML}
+                            <a href="dashboard.html" style="display:block;margin-top:1rem;font-size:0.82rem;color:#7c3aed;text-decoration:none;font-weight:600;">View all →</a>
+                        </div>
+
+                        <div class="card" style="margin-top:1.5rem;">
+                            <h2><i class="fas fa-star"></i> Recent Reviews</h2>
+                            ${revsHTML}
+                        </div>
+                    </aside>
+
+                    <!-- Edit forms -->
+                    <main>
+                        <div class="card">
+                            <h2><i class="fas fa-envelope"></i> Update Email</h2>
+                            <div id="email-msg"></div>
+                            <div class="form-group">
+                                <label for="new-email">New Email Address</label>
+                                <input type="email" id="new-email" value="${profile.email || ''}" placeholder="Enter new email">
+                            </div>
+                            <button class="btn-save" id="save-email-btn" onclick="saveEmail()">
+                                <i class="fas fa-save"></i> Save Email
+                            </button>
+                        </div>
+
+                        <div class="card" style="margin-top:1.5rem;">
+                            <h2><i class="fas fa-lock"></i> Change Password</h2>
+                            <div id="pw-msg"></div>
+                            <div class="form-group">
+                                <label for="current-pw">Current Password</label>
+                                <input type="password" id="current-pw" placeholder="Enter current password">
+                            </div>
+                            <hr class="divider">
+                            <div class="form-group">
+                                <label for="new-pw">New Password</label>
+                                <input type="password" id="new-pw" placeholder="At least 6 characters">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm-pw">Confirm New Password</label>
+                                <input type="password" id="confirm-pw" placeholder="Repeat new password">
+                            </div>
+                            <button class="btn-save" id="save-pw-btn" onclick="savePassword()">
+                                <i class="fas fa-key"></i> Update Password
+                            </button>
+                        </div>
+                    </main>`;
+
+            } catch (e) {
+                document.getElementById('main-container').innerHTML =
+                    '<p style="color:#e53e3e;text-align:center;padding:2rem;grid-column:1/-1;">Failed to load profile. Make sure you are connected to the server.</p>';
+            }
+        }
+
+        // ── Save email ─────────────────────────────────────────────────
+        async function saveEmail() {
+            const btn = document.getElementById('save-email-btn');
+            const email = document.getElementById('new-email').value.trim();
+            const msgEl = document.getElementById('email-msg');
+            if (!email) { showMsg(msgEl, 'Please enter an email.', true); return; }
+
+            btn.disabled = true; btn.textContent = 'Saving…';
+            try {
+                const res = await fetch('api/profile.php', {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    showMsg(msgEl, '✅ Email updated successfully.', false);
+                    document.getElementById('profile-email').textContent = email;
+                } else {
+                    showMsg(msgEl, (data.error || ['Unknown error']).join(', '), true);
+                }
+            } catch { showMsg(msgEl, 'Network error. Please try again.', true); }
+            finally { btn.disabled = false; btn.innerHTML = '<i class="fas fa-save"></i> Save Email'; }
+        }
+
+        // ── Save password ──────────────────────────────────────────────
+        async function savePassword() {
+            const btn = document.getElementById('save-pw-btn');
+            const current = document.getElementById('current-pw').value;
+            const newPw = document.getElementById('new-pw').value;
+            const confirm = document.getElementById('confirm-pw').value;
+            const msgEl = document.getElementById('pw-msg');
+
+            if (!current || !newPw || !confirm) { showMsg(msgEl, 'Please fill in all password fields.', true); return; }
+            if (newPw !== confirm) { showMsg(msgEl, 'New passwords do not match.', true); return; }
+            if (newPw.length < 6) { showMsg(msgEl, 'Password must be at least 6 characters.', true); return; }
+
+            btn.disabled = true; btn.textContent = 'Saving…';
+            try {
+                const res = await fetch('api/profile.php', {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ current_password: current, new_password: newPw })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    showMsg(msgEl, '✅ Password changed successfully.', false);
+                    document.getElementById('current-pw').value = '';
+                    document.getElementById('new-pw').value = '';
+                    document.getElementById('confirm-pw').value = '';
+                } else {
+                    showMsg(msgEl, data.error || 'Update failed.', true);
+                }
+            } catch { showMsg(msgEl, 'Network error. Please try again.', true); }
+            finally { btn.disabled = false; btn.innerHTML = '<i class="fas fa-key"></i> Update Password'; }
+        }
+
+        function showMsg(el, text, isError) {
+            el.innerHTML = `<div class="msg ${isError ? 'msg-error' : 'msg-success'}">${text}</div>`;
+        }
+
+        // Quick nav update
+        if (localStorage.getItem('tt_username')) {
+            document.getElementById('nav-auth').textContent = 'Logout';
+        }
+
+        loadProfile();
+    </script>
+</body>
+
+</html>

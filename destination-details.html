@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -86,7 +87,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
         }
 
         .destination-hero-content {
@@ -98,7 +99,7 @@
         .destination-hero h1 {
             font-size: 3rem;
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .destination-meta {
@@ -124,7 +125,7 @@
             background: white;
             padding: 2rem;
             border-radius: 20px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
         .sidebar {
@@ -137,7 +138,7 @@
             background: white;
             padding: 2rem;
             border-radius: 20px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
         .section {
@@ -206,7 +207,7 @@
 
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .gallery {
@@ -285,7 +286,7 @@
 
         .back-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .back-btn i {
@@ -293,25 +294,27 @@
         }
     </style>
 </head>
+
 <body>
     <header>
         <div class="container">
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="destinations.html">Destinations</a></li>
-                <li><a href="travel-guides.html">Travel Guides</a></li>
-                <li><a href="travel-tips.html">Travel Tips</a></li>
-                <li><a href="traveler-stories.html">Traveler Stories</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="booking.html">Book a Flight</a></li>
+                <li><a href="dashboard.html">My Bookings</a></li>
+                <li><a href="profile.html">Profile</a></li>
                 <li><a href="login.html" class="login-link">Login</a></li>
             </ul>
         </div>
     </header>
 
-    <div class="container" style="margin-top: 2rem;">
-        <a href="booking.html" class="back-btn">
-            <i class="fas fa-calendar-alt"></i> Book Your Trip
+    <div class="container" style="margin-top: 2rem; display:flex; justify-content:space-between; align-items:center;">
+        <a href="destinations.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> All Destinations
+        </a>
+        <a id="book-hero-btn" href="booking.html" class="back-btn">
+            <i class="fas fa-plane"></i> Book This Trip
         </a>
     </div>
 
@@ -372,7 +375,8 @@
                 <div class="sidebar-card">
                     <h2>Plan Your Trip</h2>
                     <p>Ready to explore? Start planning your adventure today!</p>
-                    <a href="#" class="btn" style="display: block; text-align: center; margin-top: 1rem;">Book Now</a>
+                    <a id="book-sidebar-btn" href="booking.html" class="btn"
+                        style="display: block; text-align: center; margin-top: 1rem;">✈️ Book Now</a>
                 </div>
             </div>
         </div>
@@ -661,8 +665,18 @@
                 .join('');
         }
 
+        // Wire up Book This Trip buttons with the city name
+        function updateBookButtons() {
+            const bookingUrl = `booking.html?arrival=${encodeURIComponent(city)}`;
+            const heroBtn = document.getElementById('book-hero-btn');
+            const sideBtn = document.getElementById('book-sidebar-btn');
+            if (heroBtn) heroBtn.href = bookingUrl;
+            if (sideBtn) sideBtn.href = bookingUrl;
+        }
+
         // Load destination when page loads
-        window.addEventListener('load', loadDestination);
+        window.addEventListener('load', () => { loadDestination(); updateBookButtons(); });
     </script>
 </body>
-</html> 
+
+</html>

@@ -1,0 +1,12 @@
+# PHP
+composer.phar
+/vendor/
+
+# Configuration
+/config/mpesa.php.local
+
+# IDEs
+.vscode/
+
+# Logs
+*.log

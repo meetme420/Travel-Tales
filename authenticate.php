@@ -1,74 +1,51 @@
 <?php
+/**
+ * authenticate.php
+ * Handles login via username OR email. Always returns JSON.
+ */
 session_start();
+header('Content-Type: application/json');
 require_once "config/database.php";
 
-$username = $password = "";
-$username_err = $password_err = $login_err = "";
+if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+    echo json_encode(["error" => "Invalid request method"]);
+    exit;
+}
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Check if username is empty
-    if (empty(trim($_POST["username"]))) {
-        $username_err = "Please enter username.";
-    } else {
-        $username = trim($_POST["username"]);
-    }
-    
-    // Check if password is empty
-    if (empty(trim($_POST["password"]))) {
-        $password_err = "Please enter your password.";
-    } else {
-        $password = trim($_POST["password"]);
-    }
-    
-    // Validate credentials
-    if (empty($username_err) && empty($password_err)) {
-        $sql = "SELECT id, username, password FROM users WHERE username = :username";
-        
-        if ($stmt = $pdo->prepare($sql)) {
-            $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
-            $param_username = trim($_POST["username"]);
-            
-            if ($stmt->execute()) {
-                if ($stmt->rowCount() == 1) {
-                    if ($row = $stmt->fetch()) {
-                        $id = $row["id"];
-                        $username = $row["username"];
-                        $hashed_password = $row["password"];
-                        if (password_verify($password, $hashed_password)) {
-                            // Password is correct, start a new session
-                            session_start();
-                            
-                            // Store data in session variables
-                            $_SESSION["loggedin"] = true;
-                            $_SESSION["id"] = $id;
-                            $_SESSION["username"] = $username;
-                            
-                            // Return success response for AJAX
-                            echo json_encode(["success" => true, "redirect" => "index.html"]);
-                            exit();
-                        } else {
-                            $login_err = "Invalid username or password.";
-                        }
-                    }
-                } else {
-                    $login_err = "Invalid username or password.";
-                }
-            } else {
-                echo "Oops! Something went wrong. Please try again later.";
-            }
+$identifier = trim($_POST["username"] ?? '');
+$password   = trim($_POST["password"] ?? '');
+
+if (empty($identifier)) {
+    echo json_encode(["login_err" => "Please enter your username or email."]);
+    exit;
+}
+if (empty($password)) {
+    echo json_encode(["password_err" => "Please enter your password."]);
+    exit;
+}
+
+// Try to find user by username OR email
+$sql = "SELECT id, username, email, password FROM users WHERE username = :val OR email = :val LIMIT 1";
+
+try {
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(":val", $identifier, PDO::PARAM_STR);
+    $stmt->execute();
+
+    if ($stmt->rowCount() === 1) {
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (password_verify($password, $row["password"])) {
+            $_SESSION["loggedin"] = true;
+            $_SESSION["id"]       = $row["id"];
+            $_SESSION["username"] = $row["username"];
+            $_SESSION["email"]    = $row["email"];
+            echo json_encode(["success" => true, "username" => $row["username"]]);
+        } else {
+            echo json_encode(["login_err" => "Incorrect username/email or password."]);
         }
-        unset($stmt);
+    } else {
+        echo json_encode(["login_err" => "Incorrect username/email or password."]);
     }
+} catch (PDOException $e) {
+    echo json_encode(["login_err" => "A database error occurred. Please try again."]);
 }
-
-// Return errors as JSON if it's an AJAX request
-if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-    $errors = array(
-        'username_err' => $username_err,
-        'password_err' => $password_err,
-        'login_err' => $login_err
-    );
-    echo json_encode($errors);
-    exit();
-}
-?>
