@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +10,9 @@
     <link rel="stylesheet" type="text/css" href="./css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Paytone+One&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Paytone+One&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <style>
         body {
@@ -18,105 +21,110 @@
             margin: 0;
             padding: 0;
         }
+
         nav {
-    width: 100%;
-    position: fixed;
-    top: 0;
-    padding: 20px 100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 100;
-    background: #333(0, 0, 0, 0.6);
-}
+            width: 100%;
+            position: fixed;
+            top: 0;
+            padding: 20px 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.6);
+        }
 
-.logo {
-    height: 50px;
-    padding-left: 6px;
-}
+        .logo {
+            height: 50px;
+            padding-left: 6px;
+        }
 
-.navbar {
-    list-style: none;
-    display: flex;
-    gap: 15px;
-}
+        .navbar {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+        }
 
-.navbar a {
-    color: #fff;
-    font-weight: bold;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 20px;
-    transition: background 0.3s ease;
-}
+        .navbar a {
+            color: #fff;
+            font-weight: bold;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            transition: background 0.3s ease;
+        }
 
-.navbar a:hover {
-    background: #ff7f50;
-}
+        .navbar a:hover {
+            background: #ff7f50;
+        }
+
         /* Navigation Styles */
-nav {
-    width: 100%;
-    padding: 2px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.6);
-}
+        nav {
+            width: 100%;
+            padding: 2px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.6);
+        }
 
-.logo {
-    height: 100px;
-}
+        .logo {
+            height: 100px;
+        }
 
-.navbar {
-    list-style: none;
-    display: flex;
-    gap: 10px;
-}
+        .navbar {
+            list-style: none;
+            display: flex;
+            gap: 10px;
+        }
 
-.navbar a {
-    color: #fff;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 20px;
-    transition: background 0.3s ease;
-}
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            transition: background 0.3s ease;
+        }
 
-.navbar a:hover {
-    background: #ff7f50;
-}
-.menu-icon {
-    display: none;
-    font-size: 24px;
-    cursor: pointer;
-}
+        .navbar a:hover {
+            background: #ff7f50;
+        }
 
-/* Responsive styles */
-@media screen and (max-width: 768px) {
-    .navbar {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 70px;
-        right: 0;
-        background-color: rgba(0, 0, 0, 0.8);
-        width: 100%;
-        padding: 10px 0;
-        gap: 10px;
-    }
+        .menu-icon {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
 
-    .navbar.active {
-        display: flex;
-    }
+        /* Responsive styles */
+        @media screen and (max-width: 768px) {
+            .navbar {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                background-color: rgba(0, 0, 0, 0.8);
+                width: 100%;
+                padding: 10px 0;
+                gap: 10px;
+            }
 
-    .menu-icon {
-        display: block;
-    }
-}
+            .navbar.active {
+                display: flex;
+            }
+
+            .menu-icon {
+                display: block;
+            }
+        }
+
         h1 {
             text-align: center;
             color: #102C57;
             margin-top: 100px;
         }
+
         table {
             width: 80%;
             margin: 20px auto;
@@ -124,30 +132,38 @@ nav {
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        th, td {
+
+        th,
+        td {
             padding: 12px;
             text-align: center;
             border: 1px solid #ddd;
         }
+
         th {
             background-color: #ff7f50;
             color: white;
         }
+
         tr:nth-child(even) {
             background-color: #f2f2f2;
         }
+
         tr:hover {
             background-color: #ddd;
         }
+
         td {
             color: #555;
         }
+
         caption {
             margin-top: 10px;
             font-weight: bold;
             font-size: 1.2em;
             color: #102C57;
         }
+
         .book-btn {
             background-color: #102C57;
             color: white;
@@ -157,80 +173,86 @@ nav {
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.3s ease;
         }
+
         .book-btn:hover {
             background-color: #ff7f50;
-            transform: scale(1.05); /* Slight zoom on hover */
+            transform: scale(1.05);
+            /* Slight zoom on hover */
         }
+
         .container {
             width: 100%;
             padding: 20px 0;
             display: flex;
             justify-content: center;
         }
+
         /* Modal Styles */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4); /* Black with opacity */
-}
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black with opacity */
+        }
 
-.modal-content {
-    background-color: #fff;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 500px;
-    border-radius: 10px;
-    text-align: center;
-}
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 10px;
+            text-align: center;
+        }
 
-.modal-content h2 {
-    margin-top: 0;
-}
+        .modal-content h2 {
+            margin-top: 0;
+        }
 
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
 
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
 
-.modal input,
-.modal select {
-    width: 100%;
-    padding: 8px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
+        .modal input,
+        .modal select {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
 
-.submitbtn {
-    background-color: #102C57;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+        .submitbtn {
+            background-color: #102C57;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
 
-.submitbtn:hover {
-    background-color: #ff7f50;
-}
+        .submitbtn:hover {
+            background-color: #ff7f50;
+        }
 
         .flight-info {
             font-size: 1.1em;
@@ -242,211 +264,228 @@ nav {
             background-color: #fafafa;
             width: 80%;
         }
+
         .flight-info h2 {
             color: #102C57;
         }
+
         .flight-info p {
             margin: 8px 0;
         }
+
         /* Social Icons */
-.social-icons, .social {
-    display: flex;
-    gap: 15px;
-    margin-top: 20px;
-}
+        .social-icons,
+        .social {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
 
-.social-icons a, .social a {
-    color: #fff;
-    font-size: 24px;
-    transition: color 0.3s ease;
-}
+        .social-icons a,
+        .social a {
+            color: #fff;
+            font-size: 24px;
+            transition: color 0.3s ease;
+        }
 
-.social-icons a:hover, .social a:hover {
-    color: #ff7f50;
-}
+        .social-icons a:hover,
+        .social a:hover {
+            color: #ff7f50;
+        }
+
         /* Footer */
-.footer {
-    background-color: #102C57;
-    color: #fff;
-    padding: 40px 20px;
-    text-align: center;
-}
+        .footer {
+            background-color: #102C57;
+            color: #fff;
+            padding: 40px 20px;
+            text-align: center;
+        }
 
-.footer .foot {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
+        .footer .foot {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
 
-.footer .footlinks h4 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-}
+        .footer .footlinks h4 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
 
-.footer .footlinks ul {
-    list-style: none;
-    padding: 0;
-}
+        .footer .footlinks ul {
+            list-style: none;
+            padding: 0;
+        }
 
-.footer .footlinks ul li {
-    margin-bottom: 10px;
-}
+        .footer .footlinks ul li {
+            margin-bottom: 10px;
+        }
 
-.footer .footlinks ul li a {
-    color: #fff;
-    font-size: 1rem;
-    transition: color 0.3s ease;
-}
+        .footer .footlinks ul li a {
+            color: #fff;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
 
-.footer .footlinks ul li a:hover {
-    color: #ff7f50;
-}
+        .footer .footlinks ul li a:hover {
+            color: #ff7f50;
+        }
 
-.footer .social a {
-    font-size: 1.5rem;
-    color: #fff;
-    margin-right: 15px;
-    transition: color 0.3s ease;
-}
+        .footer .social a {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-right: 15px;
+            transition: color 0.3s ease;
+        }
 
-.footer .social a:hover {
-    color: #ff7f50;
-}
+        .footer .social a:hover {
+            color: #ff7f50;
+        }
 
-.end {
-    margin-top: 30px;
-}
+        .end {
+            margin-top: 30px;
+        }
 
-.end p {
-    font-size: 0.9rem;
-    color: #aaa;
-}
+        .end p {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
 
-.end p b {
-    color: #fff;
-}
+        .end p b {
+            color: #fff;
+        }
 
-/* Responsive Design */
-@media (max-width: 992px) {
-    nav {
-        padding: 15px 50px;
-    }
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            nav {
+                padding: 15px 50px;
+            }
 
-    .container, .contact, .about {
-        padding: 80px 30px;
-    }
+            .container,
+            .contact,
+            .about {
+                padding: 80px 30px;
+            }
 
-    .container .text h2,
-    .contact-form h1,
-    .abt-text h1 {
-        font-size: 32px;
-        margin-bottom: 40px;
-    }
+            .container .text h2,
+            .contact-form h1,
+            .abt-text h1 {
+                font-size: 32px;
+                margin-bottom: 40px;
+            }
 
-    .container-box, .box, .col-content {
-        width: 45%;
-    }
-}
+            .container-box,
+            .box,
+            .col-content {
+                width: 45%;
+            }
+        }
 
-@media (max-width: 768px) {
-    nav {
-        padding: 10px 30px;
-    }
+        @media (max-width: 768px) {
+            nav {
+                padding: 10px 30px;
+            }
 
-    .container, .contact, .about {
-        padding: 60px 20px;
-    }
+            .container,
+            .contact,
+            .about {
+                padding: 60px 20px;
+            }
 
-    .container .text h2,
-    .contact-form h1,
-    .abt-text h1 {
-        font-size: 28px;
-        margin-bottom: 30px;
-    }
+            .container .text h2,
+            .contact-form h1,
+            .abt-text h1 {
+                font-size: 28px;
+                margin-bottom: 30px;
+            }
 
-    .container-box, .box, .col-content {
-        width: 100%;
-        margin-bottom: 30px;
-    }
+            .container-box,
+            .box,
+            .col-content {
+                width: 100%;
+                margin-bottom: 30px;
+            }
 
-    .about {
-        flex-direction: column;
-        text-align: center;
-    }
+            .about {
+                flex-direction: column;
+                text-align: center;
+            }
 
-    .about .main img {
-        margin: 0 auto 20px;
-    }
+            .about .main img {
+                margin: 0 auto 20px;
+            }
 
-    .abt-text {
-        max-width: 100%;
-        text-align: center;
-    }
+            .abt-text {
+                max-width: 100%;
+                text-align: center;
+            }
 
-    .contact-form {
-        padding: 40px 20px;
-    }
-}
+            .contact-form {
+                padding: 40px 20px;
+            }
+        }
 
-@media (max-width: 480px) {
-    nav {
-        padding: 10px 15px;
-    }
+        @media (max-width: 480px) {
+            nav {
+                padding: 10px 15px;
+            }
 
-    .container, .contact, .about {
-        padding: 40px 15px;
-    }
+            .container,
+            .contact,
+            .about {
+                padding: 40px 15px;
+            }
 
-    .container .text h2,
-    .contact-form h1,
-    .abt-text h1 {
-        font-size: 24px;
-        margin-bottom: 20px;
-    }
+            .container .text h2,
+            .contact-form h1,
+            .abt-text h1 {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
 
-    .container-box h4,
-    .dest-content h4,
-    .contact-form p,
-    .abt-text p {
-        font-size: 14px;
-    }
+            .container-box h4,
+            .dest-content h4,
+            .contact-form p,
+            .abt-text p {
+                font-size: 14px;
+            }
 
-    .container-box p,
-    .dest-content ul li,
-    .col-content p,
-    .col-content h5,
-    .abt-text p {
-        font-size: 12px;
-    }
-}
+            .container-box p,
+            .dest-content ul li,
+            .col-content p,
+            .col-content h5,
+            .abt-text p {
+                font-size: 12px;
+            }
+        }
 
 
-/* Additional Styles for Mobile Responsiveness */
-@media (max-width: 360px) {
-.navbar {
-    flex-direction: column;
-    align-items: center;
-}
+        /* Additional Styles for Mobile Responsiveness */
+        @media (max-width: 360px) {
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+            }
 
-.navbar a {
-    padding: 10px;
-    width: 100%;
-    text-align: center;
-}
+            .navbar a {
+                padding: 10px;
+                width: 100%;
+                text-align: center;
+            }
 
-.footer-content {
-    flex-direction: column;
-    align-items: center;
-}
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+            }
 
-.footlinks {
-    margin-bottom: 20px;
-}
+            .footlinks {
+                margin-bottom: 20px;
+            }
 
-.end {
-    font-size: 14px;
-}
-}
+            .end {
+                font-size: 14px;
+            }
+        }
     </style>
     <script>
         function bookNow(destination) {
@@ -455,10 +494,12 @@ nav {
         }
     </script>
 </head>
+
 <body>
     <nav>
-        <img src="https://images.unsplash.com/photo-1512289984044-071903207f5e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cGxhbmV8ZW58MHx8MHx8fDA%3D" class="logo" alt="Logo" title="TRAVEL TALES">
-        
+        <img src="https://images.unsplash.com/photo-1512289984044-071903207f5e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cGxhbmV8ZW58MHx8MHx8fDA%3D"
+            class="logo" alt="Logo" title="TRAVEL TALES">
+
         <ul class="navbar">
             <li><a href="./index.html">Home</a></li>
             <li><a href="./index.html#services">Services</a></li>
@@ -468,8 +509,8 @@ nav {
             <li><a href="./contact.html">Contact Us</a></li>
         </ul>
         <div class="menu-icon" id="menu-icon">
-          &#9776; <!-- Unicode character for the hamburger icon -->
-      </div>
+            &#9776; <!-- Unicode character for the hamburger icon -->
+        </div>
     </nav>
     <h1>Domestic Flight Information (From Nairobi)</h1>
 
@@ -546,43 +587,43 @@ nav {
         </tbody>
     </table>
     <!-- Modal for Booking -->
-<div id="bookingModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Book Your Flight</h2>
-        <form action="./flight.php" method="POST">
-            <label for="modal-destination">Destination:</label>
-            <input type="text" id="modal-destination" name="destination" readonly>
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Book Your Flight</h2>
+            <form action="./flight.php" method="POST">
+                <label for="modal-destination">Destination:</label>
+                <input type="text" id="modal-destination" name="destination" readonly>
 
-            <label for="modal-fullname">Name:</label>
-            <input type="text" id="modal-fullname" name="fullname" placeholder="Enter your full name" required>
+                <label for="modal-fullname">Name:</label>
+                <input type="text" id="modal-fullname" name="fullname" placeholder="Enter your full name" required>
 
-            <label for="modal-email">Email:</label>
-            <input type="email" id="modal-email" name="email" placeholder="Enter your email address" required>
+                <label for="modal-email">Email:</label>
+                <input type="email" id="modal-email" name="email" placeholder="Enter your email address" required>
 
-            <label for="modal-departure">Departure Date:</label>
-            <input type="date" id="modal-departure" name="date" required>
+                <label for="modal-departure">Departure Date:</label>
+                <input type="date" id="modal-departure" name="date" required>
 
-            <label for="modal-passengers">Number of Passengers:</label>
-            <select id="modal-passengers" name="passengers" required>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
+                <label for="modal-passengers">Number of Passengers:</label>
+                <select id="modal-passengers" name="passengers" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
 
-            <label for="modal-class">Class:</label>
-            <select id="modal-class" name="class" required>
-                <option value="economy">Economy</option>
-                <option value="business">Business</option>
-                <option value="first-class">First Class</option>
-            </select>
+                <label for="modal-class">Class:</label>
+                <select id="modal-class" name="class" required>
+                    <option value="economy">Economy</option>
+                    <option value="business">Business</option>
+                    <option value="first-class">First Class</option>
+                </select>
 
-            <input type="submit" name="submit" value="Book Now" class="submitbtn">
-        </form>
+                <input type="submit" name="submit" value="Book Now" class="submitbtn">
+            </form>
+        </div>
     </div>
-</div>
 
 
     <!-- Additional Flight Information -->
@@ -591,77 +632,82 @@ nav {
             <h2>Flight Information (From Delhi)</h2>
             <p><strong>Kenya Airways (CDG):</strong> Direct flights from Nairobi, typically 18 hour and 15 minutes.</p>
             <p><strong>Etihad Airways (HND):</strong> Non-stop flights, taking about 16 hours and 45 minutes.</p>
-            <p><strong>Ethiopian Airlines (JED):</strong> One-stop flights via Kochi; total duration is around 14 hours.</p>
-            <p><strong>Etihad Airways (SXR):</strong> Direct flights available, taking around 11 hour and 30 minutes.</p>
+            <p><strong>Ethiopian Airlines (JED):</strong> One-stop flights via Kochi; total duration is around 14 hours.
+            </p>
+            <p><strong>Etihad Airways (SXR):</strong> Direct flights available, taking around 11 hour and 30 minutes.
+            </p>
             <p><strong>GoAir (DHM):</strong> Short flights of about 1 hour and 15 minutes from Delhi.</p>
-            <p><strong>Qatar Airlines (DED):</strong> Direct flights with a duration of around 11 hour and 25 minutes.</p>
+            <p><strong>Qatar Airlines (DED):</strong> Direct flights with a duration of around 11 hour and 25 minutes.
+            </p>
             <p><strong>AirAsia (JAI):</strong> A quick 1-hour flight from Nairobi, perfect for weekend trips.</p>
         </div>
     </div>
-<!-- Footer -->
+    <!-- Footer -->
 
-<footer class="footer">
-    <div class="foot">
-        <div class="footlinks">
-            <h4>Quick Links</h4>
-            <ul>
-                <li><a href="./index.html">Home</a></li>
-                <li><a href="./book.html">Book Now!</a></li>
-                <li><a href="./index.html#services">Services</a></li>
-                <li><a href="./index.html#locations">Locations</a></li>
-                <li><a href="./index.html#package">Packages</a></li>
-                <li><a href="./about.html#about us">About Us</a></li>
-            </ul>
-        </div>
-        <div class="footlinks">
-            <h4>Contact Us</h4>
-            <ul>
-                <li><a href="./contact.html">Contact Form</a></li>
-                <li><a href="mailto:anikkr03@gmail.com">anikkr03@gmail.com</a></li>
-                <li><a href="mob:+919646348062">+91 9646348062</a></li>
-            </ul>
-        </div>
-        <div class="footlinks">
-            <h4>Follow Us</h4>
-            <div class="social">
-                <a href="https://www.facebook.com/aareenanand"target="_blank"><i class='bx bxl-facebook'></i></a>
-                <a href=""target="_blank"><i class='bx bxl-twitter'></i></a>
-                <a href="https://www.instagram.com/anik__kr"target="_blank"><i class='bx bxl-instagram'></i></a>
-                <a href="https://www.linkedin.com/in/aareen-anand-85aa49208"target="_blank"><i class='bx bxl-linkedin'></i></a>
+    <footer class="footer">
+        <div class="foot">
+            <div class="footlinks">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="./book.html">Book Now!</a></li>
+                    <li><a href="./index.html#services">Services</a></li>
+                    <li><a href="./index.html#locations">Locations</a></li>
+                    <li><a href="./index.html#package">Packages</a></li>
+                    <li><a href="./about.html#about us">About Us</a></li>
+                </ul>
+            </div>
+            <div class="footlinks">
+                <h4>Contact Us</h4>
+                <ul>
+                    <li><a href="./contact.html">Contact Form</a></li>
+                    <li><a href="mailto:anikkr03@gmail.com">anikkr03@gmail.com</a></li>
+                    <li><a href="mob:+919646348062">+91 9646348062</a></li>
+                </ul>
+            </div>
+            <div class="footlinks">
+                <h4>Follow Us</h4>
+                <div class="social">
+                    <a href="https://www.facebook.com/aareenanand" target="_blank"><i class='bx bxl-facebook'></i></a>
+                    <a href="" target="_blank"><i class='bx bxl-twitter'></i></a>
+                    <a href="https://www.instagram.com/anik__kr" target="_blank"><i class='bx bxl-instagram'></i></a>
+                    <a href="https://www.linkedin.com/in/aareen-anand-85aa49208" target="_blank"><i
+                            class='bx bxl-linkedin'></i></a>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="end">
-        <p>&copy; 2024 Travel Tales. All Rights Reserved. <b>Designed by Aareen Anand & Aniket Kumar Bharti.</b></p>
-    </div>
-</footer>
-<script>
-// Get the modal
-var modal = document.getElementById("bookingModal");
+        <div class="end">
+            <p>&copy; 2024 Travel Tales. All Rights Reserved. <b>Designed by Aareen Anand & Aniket Kumar Bharti.</b></p>
+        </div>
+    </footer>
+    <script>
+        // Get the modal
+        var modal = document.getElementById("bookingModal");
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
 
-// Function to open the modal and set destination
-function bookNow(destination) {
-    // Set the destination in the modal input
-    document.getElementById("modal-destination").value = destination;
-    
-    // Show the modal
-    modal.style.display = "block";
-}
+        // Function to open the modal and set destination
+        function bookNow(destination) {
+            // Set the destination in the modal input
+            document.getElementById("modal-destination").value = destination;
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
+            // Show the modal
+            modal.style.display = "block";
+        }
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-</script>
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 </body>
+
 </html>

@@ -80,4 +80,16 @@ CREATE TABLE IF NOT EXISTS travel_guides (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (destination_id) REFERENCES destinations(id),
     FOREIGN KEY (author_id) REFERENCES users(id)
-); 
+);
+
+-- Flight Bookings table (for simplified flight.php)
+CREATE TABLE IF NOT EXISTS flightbook (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    destination VARCHAR(100) NOT NULL,
+    fullname VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    date DATE NOT NULL,
+    passengers INT NOT NULL,
+    class VARCHAR(50) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

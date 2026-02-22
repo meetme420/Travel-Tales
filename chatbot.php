@@ -8,8 +8,10 @@ $responses = [
     "safety" => "Your safety is our priority! We offer travel insurance and real-time support during your journey."
 ];
 
-// Get user input from AJAX request
-$userInput = strtolower($_POST["userInput"] ?? "");
+// Get user input from AJAX request (Handle JSON or POST)
+$json = file_get_contents('php://input');
+$data = json_decode($json, true);
+$userInput = strtolower($data["message"] ?? $_POST["userInput"] ?? "");
 
 // Check for related queries
 if (strpos($userInput, "flight") !== false) {
