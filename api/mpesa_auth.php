@@ -7,8 +7,10 @@
 
 require_once '../config/mpesa.php';
 
-function getMpesaAccessToken(): string {
+if (session_status() === PHP_SESSION_NONE) {
     session_start();
+}
+header('Content-Type: application/json');
 
     // Return cached token if still valid (expires in ~3600s, we use 3500s to be safe)
     if (
