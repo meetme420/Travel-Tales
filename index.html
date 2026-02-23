@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -51,7 +52,7 @@
         .hero-content h1 {
             font-size: 3rem;
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .hero-content p {
@@ -92,14 +93,14 @@
             padding: 1rem 1.5rem;
             border: none;
             border-radius: 50px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             font-size: 1rem;
             transition: all 0.3s ease;
         }
 
         .search-bar input:focus {
             outline: none;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
 
         .container {
@@ -136,13 +137,13 @@
             background: white;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
         }
 
         .destination-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
 
         .destination-card img {
@@ -198,7 +199,7 @@
 
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .categories {
@@ -213,13 +214,13 @@
             height: 300px;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
         }
 
         .category-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
 
         .category-card img {
@@ -238,7 +239,7 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
             padding: 2rem;
             color: white;
         }
@@ -264,13 +265,13 @@
             background: white;
             border-radius: 20px;
             padding: 2rem;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
         }
 
         .tip-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
 
         .tip-icon {
@@ -302,13 +303,13 @@
             background: white;
             border-radius: 20px;
             padding: 2rem;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
         }
 
         .testimonial-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
 
         .testimonial-content {
@@ -370,7 +371,7 @@
 
         .cta-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .cta-btn.outline {
@@ -599,6 +600,7 @@
 
         /* Improve touch targets on mobile */
         @media (max-width: 768px) {
+
             .nav-links a,
             .footer-links a,
             .btn,
@@ -636,16 +638,16 @@
         }
     </style>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const images = document.querySelectorAll('.destination-card img, .category-card img');
             images.forEach(img => {
                 if (img.complete) {
                     img.classList.add('loaded');
                 } else {
-                    img.addEventListener('load', function() {
+                    img.addEventListener('load', function () {
                         img.classList.add('loaded');
                     });
-                    img.addEventListener('error', function() {
+                    img.addEventListener('error', function () {
                         img.classList.add('error');
                         img.alt = 'Image not available';
                     });
@@ -654,6 +656,7 @@
         });
     </script>
 </head>
+
 <body>
     <header>
         <div class="hero-content">
@@ -663,60 +666,92 @@
                 <input type="text" placeholder="Where would you like to explore?">
             </div>
             <nav>
-            <ul class="nav-links">
+                <ul class="nav-links">
                     <li><a href="index.html" class="active">Home</a></li>
                     <li><a href="destinations.html">Destinations</a></li>
                     <li><a href="travel-guides.html">Travel Guides</a></li>
                     <li><a href="travel-tips.html">Travel Tips</a></li>
-                    <li><a href="traveler-stories.html">Traveler Stories</a></li>
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="contact.html">Contact</a></li>
                     <li><a href="booking.html">Book Now</a></li>
-                    <li><a href="login.html" class="login-link">Login</a></li>
-            </ul>
-        </nav>
+                    <li id="auth-nav-item">
+                        <a href="login.html" class="login-link">Login</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </header>
 
+    <script>
+        // Session Check & Navbar Update
+        async function checkSession() {
+            try {
+                const response = await fetch('api/check_session.php');
+                const data = await response.json();
+                const navItem = document.getElementById('auth-nav-item');
+
+                if (data.loggedin) {
+                    navItem.innerHTML = `
+                        <div class="user-profile-menu" style="position: relative; display: inline-block;">
+                            <a href="profile.html" style="background: rgba(255,255,255,0.2); padding: 0.5rem 1rem; border-radius: 50px; display: flex; align-items: center; gap: 10px;">
+                                <i class="fas fa-user-circle"></i>
+                                <span>${data.username}</span>
+                            </a>
+                        </div>
+                    `;
+                }
+            } catch (err) {
+                console.error("Session check failed", err);
+            }
+        }
+        checkSession();
+    </script>
+
     <main>
-            <div class="container">
+        <div class="container">
             <h2 class="section-title">Featured Destinations</h2>
             <div class="featured-destinations">
                 <div class="destination-card">
-                    <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=800&auto=format&fit=crop" alt="Paris">
-                        <div class="destination-card-content">
-                            <h3>Paris, France</h3>
+                    <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=800&auto=format&fit=crop"
+                        alt="Paris">
+                    <div class="destination-card-content">
+                        <h3>Paris, France</h3>
                         <div class="destination-meta">
                             <span class="destination-rating">★★★★★ 4.9</span>
                             <span>Europe</span>
                         </div>
-                        <p>Experience the romance of the City of Light. From the iconic Eiffel Tower to charming cafés and world-class museums.</p>
+                        <p>Experience the romance of the City of Light. From the iconic Eiffel Tower to charming cafés
+                            and world-class museums.</p>
                         <a href="destination-details.html?city=paris" class="btn">Explore Guide</a>
                     </div>
-                        </div>
+                </div>
 
                 <div class="destination-card">
-                    <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=800&auto=format&fit=crop" alt="Tokyo">
-                        <div class="destination-card-content">
+                    <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=800&auto=format&fit=crop"
+                        alt="Tokyo">
+                    <div class="destination-card-content">
                         <h3>Tokyo, Japan</h3>
                         <div class="destination-meta">
                             <span class="destination-rating">★★★★★ 4.8</span>
                             <span>Asia</span>
                         </div>
-                        <p>Dive into a fascinating blend of ultra-modern technology and traditional culture in Japan's dynamic capital.</p>
+                        <p>Dive into a fascinating blend of ultra-modern technology and traditional culture in Japan's
+                            dynamic capital.</p>
                         <a href="destination-details.html?city=tokyo" class="btn">Explore Guide</a>
                     </div>
                 </div>
 
                 <div class="destination-card">
-                    <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?q=80&w=800&auto=format&fit=crop" alt="Santorini">
-                        <div class="destination-card-content">
+                    <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?q=80&w=800&auto=format&fit=crop"
+                        alt="Santorini">
+                    <div class="destination-card-content">
                         <h3>Santorini, Greece</h3>
                         <div class="destination-meta">
                             <span class="destination-rating">★★★★★ 4.9</span>
                             <span>Europe</span>
                         </div>
-                        <p>Discover the magic of white-washed buildings, blue domes, and the most spectacular sunsets in the Mediterranean.</p>
+                        <p>Discover the magic of white-washed buildings, blue domes, and the most spectacular sunsets in
+                            the Mediterranean.</p>
                         <a href="destination-details.html?city=santorini" class="btn">Explore Guide</a>
                     </div>
                 </div>
@@ -725,28 +760,32 @@
             <h2 class="section-title">Explore by Category</h2>
             <div class="categories">
                 <div class="category-card">
-                    <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?q=80&w=800&auto=format&fit=crop" alt="Cities">
+                    <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?q=80&w=800&auto=format&fit=crop"
+                        alt="Cities">
                     <div class="category-overlay">
                         <h3>Cities</h3>
                         <p>Urban adventures and cultural experiences</p>
                     </div>
                 </div>
                 <div class="category-card">
-                    <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?q=80&w=800&auto=format&fit=crop" alt="Beaches">
+                    <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?q=80&w=800&auto=format&fit=crop"
+                        alt="Beaches">
                     <div class="category-overlay">
                         <h3>Beaches</h3>
                         <p>Sun, sand, and relaxation</p>
                     </div>
                 </div>
                 <div class="category-card">
-                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=800&auto=format&fit=crop" alt="Mountains">
+                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=800&auto=format&fit=crop"
+                        alt="Mountains">
                     <div class="category-overlay">
                         <h3>Mountains</h3>
                         <p>Hiking and breathtaking views</p>
                     </div>
-                    </div>
+                </div>
                 <div class="category-card">
-                    <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?q=80&w=800&auto=format&fit=crop" alt="Historical">
+                    <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?q=80&w=800&auto=format&fit=crop"
+                        alt="Historical">
                     <div class="category-overlay">
                         <h3>Historical</h3>
                         <p>Ancient ruins and cultural heritage</p>
@@ -760,21 +799,24 @@
                     <div class="tip-icon">✈️</div>
                     <h3 class="tip-title">Flight Booking Tips</h3>
                     <p class="tip-content">
-                        Book flights 3-4 months in advance, use incognito mode when searching, be flexible with dates, and sign up for price alerts.
+                        Book flights 3-4 months in advance, use incognito mode when searching, be flexible with dates,
+                        and sign up for price alerts.
                     </p>
                 </div>
                 <div class="tip-card">
                     <div class="tip-icon">🏨</div>
                     <h3 class="tip-title">Accommodation Hacks</h3>
                     <p class="tip-content">
-                        Read recent reviews carefully, book with free cancellation, contact hosts directly, and check location safety.
+                        Read recent reviews carefully, book with free cancellation, contact hosts directly, and check
+                        location safety.
                     </p>
                 </div>
                 <div class="tip-card">
                     <div class="tip-icon">💰</div>
                     <h3 class="tip-title">Budget Management</h3>
                     <p class="tip-content">
-                        Set daily spending limits, use local transportation, cook some meals yourself, and find free attractions.
+                        Set daily spending limits, use local transportation, cook some meals yourself, and find free
+                        attractions.
                     </p>
                 </div>
             </div>
@@ -782,17 +824,20 @@
             <h2 class="section-title">Traveler Stories</h2>
             <div class="testimonials">
                 <div class="testimonial-card">
-                    <p class="testimonial-content">"Travel Tales made planning my trip to Japan so much easier! Their Tokyo guide helped me discover hidden gems I would have otherwise missed."</p>
+                    <p class="testimonial-content">"Travel Tales made planning my trip to Japan so much easier! Their
+                        Tokyo guide helped me discover hidden gems I would have otherwise missed."</p>
                     <div class="testimonial-author">Amara Okafor</div>
                     <div class="testimonial-location">Lagos, Nigeria</div>
                 </div>
                 <div class="testimonial-card">
-                    <p class="testimonial-content">"The tips about local transportation saved me hundreds on my European tour. I've been recommending Travel Tales to all my friends!"</p>
+                    <p class="testimonial-content">"The tips about local transportation saved me hundreds on my European
+                        tour. I've been recommending Travel Tales to all my friends!"</p>
                     <div class="testimonial-author">Miguel Santana</div>
                     <div class="testimonial-location">Madrid, Spain</div>
                 </div>
                 <div class="testimonial-card">
-                    <p class="testimonial-content">"As a solo female traveler, the safety tips were invaluable. My trip to Bali was incredible and stress-free thanks to Travel Tales' guidance."</p>
+                    <p class="testimonial-content">"As a solo female traveler, the safety tips were invaluable. My trip
+                        to Bali was incredible and stress-free thanks to Travel Tales' guidance."</p>
                     <div class="testimonial-author">Emma Chen</div>
                     <div class="testimonial-location">Toronto, Canada</div>
                 </div>
@@ -800,7 +845,8 @@
 
             <div class="cta-section">
                 <h2>Ready to Start Your Adventure?</h2>
-                <p>Explore our comprehensive travel guides, discover new destinations, and get expert tips for your next journey.</p>
+                <p>Explore our comprehensive travel guides, discover new destinations, and get expert tips for your next
+                    journey.</p>
                 <div class="cta-buttons">
                     <a href="destinations.html" class="cta-btn">Explore Destinations</a>
                     <a href="travel-guides.html" class="cta-btn outline">View Travel Guides</a>
@@ -827,4 +873,5 @@
     </footer>
     <script src="js/chatbot-widget.js"></script>
 </body>
+
 </html>

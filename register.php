@@ -78,6 +78,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             if ($stmt->execute()) {
                 $registration_successful = true;
+                
+                // Get the last inserted ID
+                $last_id = $pdo->lastInsertId();
+                
+                // Set session variables for auto-login
+                $_SESSION["loggedin"] = true;
+                $_SESSION["id"] = $last_id;
+                $_SESSION["username"] = $username;
+                $_SESSION["email"] = $email;
             } else {
                 $general_err = "Something went wrong. Please try again later.";
             }
