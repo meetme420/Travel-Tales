@@ -39,23 +39,28 @@ $responses = [
         'suggestions' => ['Show me popular destinations', 'How to book a trip?', 'Travel tips']
     ],
     'destinations' => [
-        'patterns' => ['popular destinations', 'where to go', 'best places', 'recommend', 'destination'],
-        'response' => "Here are some of our most popular destinations:\n\n🗼 Paris, France\n🗽 New York City, USA\n🏺 Santorini, Greece\n🗻 Tokyo, Japan\n\nWhich one would you like to learn more about?",
+        'patterns' => ['popular destinations', 'where to go', 'best places', 'recommend', 'destination', 'visit'],
+        'response' => "Explore our top picks for your next adventure!<br><br>🗼 <a href='destinations.html' style='color:inherit;font-weight:600;'>View All Destinations</a><br>🗽 New York City, USA<br>🏺 Santorini, Greece<br>🗻 Tokyo, Japan<br><br>Which one interests you most?",
         'suggestions' => ['Tell me about Paris', 'Show me Tokyo guides', 'Santorini travel tips']
     ],
     'booking' => [
-        'patterns' => ['book', 'reservation', 'how to book', 'booking process'],
-        'response' => "Booking with Travel Tales is easy! Here's how:\n\n1. Choose your destination\n2. Select your travel dates\n3. Pick your accommodation\n4. Add any activities\n5. Complete payment\n\nWould you like me to help you start the booking process?",
+        'patterns' => ['book', 'reservation', 'how to book', 'booking process', 'reserve', 'pay'],
+        'response' => "Ready to start your journey? ✈️<br><br>1. Choose your destination<br>2. Select dates<br>3. <a href='booking.html' style='color:inherit;font-weight:600;'>Proceed to Booking</a><br><br>Would you like me to help you start now?",
         'suggestions' => ['Start booking', 'View available dates', 'Payment options']
+    ],
+    'navigation' => [
+        'patterns' => ['navigate', 'where is', 'find', 'page', 'go to', 'show me'],
+        'response' => "I can help you find your way around! 🗺️<br><br>🏠 <a href='index.html' style='color:inherit;font-weight:600;'>Home</a><br>🗺️ <a href='destinations.html' style='color:inherit;font-weight:600;'>Destinations</a><br>📝 <a href='signup.html' style='color:inherit;font-weight:600;'>Create Account</a><br>🔑 <a href='login.html' style='color:inherit;font-weight:600;'>Login Page</a><br><br>Where would you like to go?",
+        'suggestions' => ['Take me to login', 'Show destinations', 'How to signup?']
     ],
     'tips' => [
         'patterns' => ['tips', 'advice', 'suggestions', 'help', 'guide'],
-        'response' => "Here are some essential travel tips:\n\n✈️ Book flights 3-4 months in advance\n🏨 Read recent accommodation reviews\n💰 Set a daily budget\n🎒 Pack light and smart\n\nWould you like more specific tips for any category?",
+        'response' => "Check out our <a href='travel-tips.html' style='color:inherit;font-weight:600;'>Exclusive Travel Tips</a>!<br><br>✈️ Book flights early<br>🏨 Check reviews<br>💰 Setting budgets<br><br>Need specific advice?",
         'suggestions' => ['Flight booking tips', 'Accommodation tips', 'Budgeting advice']
     ],
     'contact' => [
         'patterns' => ['contact', 'support', 'help desk', 'phone', 'email'],
-        'response' => "You can reach our support team through:\n\n📧 Email: support@traveltales.com\n📞 Phone: +1-888-TRAVEL-TALES\n💬 Live Chat: Available 24/7\n\nHow would you like to contact us?",
+        'response' => "Need help? Reach out here: <a href='contact.html' style='color:inherit;font-weight:600;'>Contact Support</a><br><br>📧 Email: support@traveltales.com<br>📞 Phone: +1-888-TRAVEL-TALES<br>💬 Live Chat: 24/7",
         'suggestions' => ['Send email', 'Start live chat', 'View contact hours']
     ]
 ];

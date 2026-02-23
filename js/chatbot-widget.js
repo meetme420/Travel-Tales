@@ -1,5 +1,5 @@
 // Travel Tales Chatbot Widget
-(function() {
+(function () {
     // Create and inject the chatbot styles
     const injectStyles = () => {
         const styles = `
@@ -326,7 +326,7 @@
                 border: 1px solid #ffeeba;
             }
         `;
-        
+
         const styleElement = document.createElement('style');
         styleElement.textContent = styles;
         document.head.appendChild(styleElement);
@@ -426,12 +426,12 @@
     const addMessage = (message, isUser = false, suggestions = []) => {
         const messagesContainer = document.getElementById('chatMessages');
         const messageWrapper = document.createElement('div');
-        
+
         const messageDiv = document.createElement('div');
         messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
-        messageDiv.textContent = message;
+        messageDiv.innerHTML = message;
         messageWrapper.appendChild(messageDiv);
-        
+
         if (!isUser && suggestions && suggestions.length > 0) {
             const suggestionsDiv = document.createElement('div');
             suggestionsDiv.className = 'suggestions';
@@ -447,7 +447,7 @@
             });
             messageWrapper.appendChild(suggestionsDiv);
         }
-        
+
         messagesContainer.appendChild(messageWrapper);
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
     };
@@ -492,37 +492,37 @@
     const sendMessage = async () => {
         const input = document.getElementById('userInput');
         const message = input.value.trim();
-        
+
         if (message) {
             addMessage(message, true);
             input.value = '';
-            
+
             const indicator = showTypingIndicator();
-            
+
             try {
                 // First check if we're online
                 if (!navigator.onLine) {
                     throw new Error('You appear to be offline. Please check your internet connection.');
                 }
 
-                const response = await fetch('/api/chatbot.php', {
+                const response = await fetch('api/chatbot.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ 
+                    body: JSON.stringify({
                         message,
                         timestamp: new Date().toISOString(),
-                        sessionId: localStorage.getItem('chatSessionId') || createSessionId()
+                        sessionId: localStorage.getItem('chatSessionId') || window.createSessionId()
                     })
                 });
-                
+
                 if (!response.ok) {
                     throw new Error(`Server error: ${response.status}`);
                 }
-                
+
                 const data = await response.json();
-                
+
                 setTimeout(() => {
                     hideTypingIndicator(indicator);
                     if (data.error) {
@@ -564,7 +564,7 @@
     const initChatbot = () => {
         // Remove no-js class when JavaScript is enabled
         document.documentElement.classList.remove('no-js');
-        
+
         // Check if Font Awesome is loaded, if not load it
         if (!document.querySelector('link[href*="font-awesome"]')) {
             const fontAwesome = document.createElement('link');
@@ -601,6 +601,11 @@
         window.sendMessage = sendMessage;
         window.handleKeyPress = handleKeyPress;
         window.retryLastMessage = retryLastMessage;
+        window.createSessionId = () => {
+            const id = 'session_' + Math.random().toString(36).substr(2, 9);
+            localStorage.setItem('chatSessionId', id);
+            return id;
+        };
     };
 
     // Initialize when DOM is loaded
