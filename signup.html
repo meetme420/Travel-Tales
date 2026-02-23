@@ -4,9 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - Travel Tales</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Join Travel Tales - Begin Your Journey</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #f59e0b;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --glass: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.5);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -14,105 +25,199 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: 'Outfit', sans-serif;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        .signup-container {
-            background: white;
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 500px;
-            margin: 2rem;
-        }
-
-        h2 {
-            color: #2d3748;
-            text-align: center;
-            margin-bottom: 2rem;
-            font-size: 2rem;
+            background: url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat fixed;
+            padding: 2rem;
             position: relative;
         }
 
-        h2::after {
+        body::before {
             content: '';
-            display: block;
-            width: 50px;
-            height: 3px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            margin: 0.5rem auto;
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.4) 0%, rgba(168, 85, 247, 0.4) 100%);
+            z-index: 0;
+        }
+
+        .auth-card {
+            position: relative;
+            z-index: 1;
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 3rem;
+            width: 100%;
+            max-width: 480px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .header h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.025em;
+        }
+
+        .header p {
+            color: var(--text-muted);
+            font-size: 1rem;
         }
 
         .form-group {
             margin-bottom: 1.5rem;
         }
 
-        label {
+        .form-group label {
             display: block;
-            color: #4a5568;
-            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
             font-weight: 500;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+            margin-left: 0.25rem;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 1.25rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            transition: color 0.3s ease;
         }
 
         input {
             width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #e2e8f0;
-            border-radius: 10px;
+            padding: 1rem 1rem 1rem 3rem;
+            background: rgba(255, 255, 255, 0.5);
+            border: 2px solid transparent;
+            border-radius: 14px;
             font-size: 1rem;
+            color: var(--text-main);
             transition: all 0.3s ease;
+            outline: none;
         }
 
         input:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            background: white;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
         }
 
-        button {
+        input:focus+i {
+            color: var(--primary);
+        }
+
+        .btn-submit {
             width: 100%;
-            padding: 0.8rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 1.125rem;
+            background: var(--primary);
             color: white;
             border: none;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: 500;
+            border-radius: 14px;
+            font-size: 1.1rem;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            margin-top: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.3);
         }
 
-        button:hover {
+        .btn-submit:hover {
+            background: var(--primary-dark);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 20px 25px -5px rgba(99, 102, 241, 0.4);
         }
 
-        .login-link {
+        .footer-links {
             text-align: center;
-            margin-top: 1.5rem;
-            color: #4a5568;
+            margin-top: 2rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
         }
 
-        .login-link a {
-            color: #667eea;
+        .footer-links a {
+            color: var(--primary);
             text-decoration: none;
+            font-weight: 600;
+            margin-left: 0.25rem;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        .banner {
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
             font-weight: 500;
-            transition: color 0.3s ease;
+            display: none;
+            animation: fadeIn 0.3s ease;
         }
 
-        .login-link a:hover {
-            color: #764ba2;
+        .banner.error {
+            background: #fef2f2;
+            color: #ef4444;
+            border: 1px solid #fee2e2;
+            display: block;
         }
 
-        @media (max-width: 768px) {
-            .signup-container {
-                margin: 1rem;
+        .banner.success {
+            background: #ecfdf5;
+            color: #10b981;
+            border: 1px solid #d1fae5;
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .field-error {
+            color: #ef4444;
+            font-size: 0.8rem;
+            margin-top: 0.35rem;
+            margin-left: 0.25rem;
+        }
+
+        @media (max-width: 640px) {
+            .auth-card {
                 padding: 2rem;
             }
         }
@@ -120,34 +225,124 @@
 </head>
 
 <body>
-    <div class="signup-container">
-        <h2>Join Travel Tales</h2>
-        <form action="register.php" method="post">
+    <div class="auth-card">
+        <div class="header">
+            <h1>Travel Tales</h1>
+            <p>Begin your adventure with us</p>
+        </div>
+
+        <div id="message-banner" class="banner"></div>
+
+        <form id="signup-form">
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" id="username" name="username" required placeholder="Enter your username">
+                <div class="input-wrapper">
+                    <input type="text" id="username" name="username" placeholder="Choose a travel alias" required>
+                    <i class="fas fa-user"></i>
+                </div>
+                <div id="username_err" class="field-error"></div>
             </div>
+
             <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required placeholder="Enter your email">
+                <label for="email">Email Address</label>
+                <div class="input-wrapper">
+                    <input type="email" id="email" name="email" placeholder="explorer@travel.com" required>
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div id="email_err" class="field-error"></div>
             </div>
+
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" required placeholder="Create a password">
+                <div class="input-wrapper">
+                    <input type="password" id="password" name="password" placeholder="Min. 6 characters" required>
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div id="password_err" class="field-error"></div>
             </div>
+
             <div class="form-group">
                 <label for="confirm_password">Confirm Password</label>
-                <input type="password" id="confirm_password" name="confirm_password" required
-                    placeholder="Confirm your password">
+                <div class="input-wrapper">
+                    <input type="password" id="confirm_password" name="confirm_password"
+                        placeholder="Repeat your password" required>
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div id="confirm_password_err" class="field-error"></div>
             </div>
-            <div class="form-group">
-                <button type="submit">Create Account</button>
-            </div>
+
+            <button type="submit" class="btn-submit" id="submit-btn">Create Account</button>
         </form>
-        <div class="login-link">
-            Already have an account? <a href="index.html#login-signup">Log in</a>
+
+        <div class="footer-links">
+            Already a member? <a href="login.html">Sign In</a>
         </div>
     </div>
+
+    <script>
+        const signupForm = document.getElementById('signup-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const banner = document.getElementById('message-banner');
+
+        function clearErrors() {
+            document.querySelectorAll('.field-error').forEach(el => el.textContent = '');
+            banner.style.display = 'none';
+        }
+
+        signupForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            clearErrors();
+
+            submitBtn.textContent = 'Processing...';
+            submitBtn.disabled = true;
+
+            const formData = new FormData(signupForm);
+
+            try {
+                const response = await fetch('register.php', {
+                    method: 'POST',
+                    body: new URLSearchParams(formData)
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    banner.textContent = "Welcome aboard! Redirecting you to login...";
+                    banner.className = "banner success";
+                    banner.style.display = "block";
+
+                    setTimeout(() => {
+                        window.location.href = 'login.html';
+                    }, 2000);
+                } else {
+                    if (data.errors) {
+                        if (data.errors.username_err) document.getElementById('username_err').textContent = data.errors.username_err;
+                        if (data.errors.email_err) document.getElementById('email_err').textContent = data.errors.email_err;
+                        if (data.errors.password_err) document.getElementById('password_err').textContent = data.errors.password_err;
+                        if (data.errors.confirm_password_err) document.getElementById('confirm_password_err').textContent = data.errors.confirm_password_err;
+
+                        if (data.errors.general_err) {
+                            banner.textContent = data.errors.general_err;
+                            banner.className = "banner error";
+                            banner.style.display = "block";
+                        }
+                    } else {
+                        banner.textContent = "Something went wrong. Please check your details.";
+                        banner.className = "banner error";
+                        banner.style.display = "block";
+                    }
+                    submitBtn.textContent = 'Create Account';
+                    submitBtn.disabled = false;
+                }
+            } catch (error) {
+                banner.textContent = "Network error. Please try again later.";
+                banner.className = "banner error";
+                banner.style.display = "block";
+                submitBtn.textContent = 'Create Account';
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
 </body>
 
 </html>
