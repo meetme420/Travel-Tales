@@ -9,7 +9,8 @@ $registration_successful = false; // Flag to indicate successful registration
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate username
-    if (empty(trim($_POST["username"]))) {
+    $post_username = $_POST["username"] ?? "";
+    if (empty(trim($post_username))) {
         $username_err = "Please enter a username.";
     } else {
         $sql = "SELECT id FROM users WHERE username = :username";
@@ -32,7 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     
     // Validate email
-    if (empty(trim($_POST["email"]))) {
+    $post_email = $_POST["email"] ?? "";
+    if (empty(trim($post_email))) {
         $email_err = "Please enter an email.";
     } else if (!filter_var(trim($_POST["email"]), FILTER_VALIDATE_EMAIL)) {
         $email_err = "Please enter a valid email address.";
@@ -41,16 +43,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     
     // Validate password
-    if (empty(trim($_POST["password"]))) {
+    $post_password = $_POST["password"] ?? "";
+    if (empty(trim($post_password))) {
         $password_err = "Please enter a password.";     
-    } elseif (strlen(trim($_POST["password"])) < 6) {
+    } elseif (strlen(trim($post_password)) < 6) {
         $password_err = "Password must have at least 6 characters.";
     } else {
-        $password = trim($_POST["password"]);
+        $password = trim($post_password);
     }
     
     // Validate confirm password
-    if (empty(trim($_POST["confirm_password"]))) {
+    $post_confirm = $_POST["confirm_password"] ?? "";
+    if (empty(trim($post_confirm))) {
         $confirm_password_err = "Please confirm password.";     
     } else {
         $confirm_password = trim($_POST["confirm_password"]);
