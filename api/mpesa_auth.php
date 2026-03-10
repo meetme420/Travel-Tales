@@ -12,6 +12,8 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 header('Content-Type: application/json');
 
+function getMpesaAccessToken() {
+
     // Return cached token if still valid (expires in ~3600s, we use 3500s to be safe)
     if (
         isset($_SESSION['mpesa_token'], $_SESSION['mpesa_token_expiry']) &&
@@ -26,9 +28,14 @@ header('Content-Type: application/json');
     $curl = curl_init();
     curl_setopt_array($curl, [
         CURLOPT_URL            => $url,
-        CURLOPT_HTTPHEADER     => ['Authorization: Basic ' . $credentials],
+        CURLOPT_HTTPHEADER     => [
+            'Authorization: Basic ' . $credentials,
+            'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+        ],
         CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_SSL_VERIFYPEER => true,
+        CURLOPT_SSL_VERIFYPEER => false, // TEMPORARY for debugging
+        CURLOPT_SSL_VERIFYHOST => 0,     // TEMPORARY for debugging
+        CURLOPT_IPRESOLVE      => CURL_IPRESOLVE_V4, // Force IPv4 routing (sandbox sometimes hangs on IPv6)
         CURLOPT_TIMEOUT        => 30,
     ]);
 

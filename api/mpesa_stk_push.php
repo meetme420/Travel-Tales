@@ -105,11 +105,13 @@ curl_setopt_array($curl, [
     CURLOPT_HTTPHEADER     => [
         'Authorization: Bearer ' . $token,
         'Content-Type: application/json',
+        'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
     ],
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_POST           => true,
     CURLOPT_POSTFIELDS     => json_encode($payload),
     CURLOPT_SSL_VERIFYPEER => true,
+    CURLOPT_IPRESOLVE      => CURL_IPRESOLVE_V4,
     CURLOPT_TIMEOUT        => 30,
 ]);
 

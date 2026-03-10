@@ -24,7 +24,7 @@ define('MPESA_TRANSACTION_TYPE', 'CustomerPayBillOnline');
 // Callback URL — must be a public HTTPS URL reachable by Safaricom.
 // For local testing, expose your server with ngrok: ngrok http 80
 // Then set this to: https://YOUR_NGROK_ID.ngrok.io/api/mpesa_callback.php
-define('MPESA_CALLBACK_URL', 'https://spinier-supersolemnly-loni.ngrok-free.dev/api/mpesa_callback.php');
+define('MPESA_CALLBACK_URL', 'https://jocelyn-unwainscoted-throughly.ngrok-free.dev/api/mpesa_callback.php');
 
 // Currency conversion: 1 USD → KES
 // Update this as exchange rate changes, or connect to a live FX API.

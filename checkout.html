@@ -641,14 +641,25 @@
                         number_of_people: parseInt(numPeople)
                     })
                 });
-                const bookingData = await bookingRes.json();
+
+                const responseText = await bookingRes.text();
+                let bookingData;
+                try {
+                    bookingData = JSON.parse(responseText);
+                } catch (e) {
+                    console.error("Raw response:", responseText);
+                    alert("Server returned invalid JSON: " + responseText.substring(0, 100));
+                    return;
+                }
+
                 if (!bookingData.success) {
                     alert('Booking error: ' + (bookingData.error || 'Unknown error'));
                     return;
                 }
                 bookingId = bookingData.booking_id;
             } catch (err) {
-                alert('Network error while creating booking. Please try again.');
+                console.error(err);
+                alert('Fetch failed: ' + err.message + '\nFull error: ' + String(err));
                 return;
             }
 
@@ -734,6 +745,7 @@
             hideOverlay();
         });
     </script>
+    <script src="js/auth-check.js"></script>
 </body>
 
 </html>
