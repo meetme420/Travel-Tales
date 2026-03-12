@@ -110,7 +110,8 @@ curl_setopt_array($curl, [
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_POST           => true,
     CURLOPT_POSTFIELDS     => json_encode($payload),
-    CURLOPT_SSL_VERIFYPEER => true,
+    CURLOPT_SSL_VERIFYPEER => false,
+    CURLOPT_SSL_VERIFYHOST => 0,
     CURLOPT_IPRESOLVE      => CURL_IPRESOLVE_V4,
     CURLOPT_TIMEOUT        => 30,
 ]);

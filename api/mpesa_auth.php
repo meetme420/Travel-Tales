@@ -33,9 +33,9 @@ function getMpesaAccessToken() {
             'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
         ],
         CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_SSL_VERIFYPEER => false, // TEMPORARY for debugging
-        CURLOPT_SSL_VERIFYHOST => 0,     // TEMPORARY for debugging
-        CURLOPT_IPRESOLVE      => CURL_IPRESOLVE_V4, // Force IPv4 routing (sandbox sometimes hangs on IPv6)
+        CURLOPT_SSL_VERIFYPEER => false,
+        CURLOPT_SSL_VERIFYHOST => 0,
+        CURLOPT_IPRESOLVE      => CURL_IPRESOLVE_V4,
         CURLOPT_TIMEOUT        => 30,
     ]);
 
